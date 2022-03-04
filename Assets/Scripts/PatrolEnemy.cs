@@ -13,7 +13,7 @@ public class PatrolEnemy : MonoBehaviour
     [Tooltip("Tick if the character is a Scientist, instead of a Guard")]
     [SerializeField] bool isScientist;
 
-    [SerializeField] float moveSpeed, sightRange, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
+    [SerializeField] float moveSpeed, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
 
     enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND }
     [SerializeField] States currentState;
@@ -91,18 +91,19 @@ public class PatrolEnemy : MonoBehaviour
 
     IEnumerator SEARCH()
     {
+        isSearching = true;
         yield return null;
     }
     IEnumerator ATTACK()
     {
-        // Game over !
-        yield return null;
+        Debug.Log("Game Over");
+        yield return endFrame;
     }
     IEnumerator ALARMED()
     {
         // Exlamation point ! like MGS
         // anim.play caution or look animation
-        yield return new WaitForSeconds(alertTime);
+        Debug.Log("huh, what are you doing!");
         isAlert = true;
         while (currentState == States.ALARMED)
         {
@@ -127,31 +128,39 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator AlarmedCountdown()
     {
+
         yield return new WaitForSeconds(alertTime);
         currentState = States.ALARMED;
+        yield return endFrame;
     }
 
     IEnumerator AttackTimeCountdown()
     {
         yield return new WaitForSeconds(attackTime);
         currentState = States.ATTACK;
+        yield return endFrame;
     }
     IEnumerator ReturnToPatrol()
     {
         yield return new WaitForSeconds(returnToPatrolTime);
         currentState = States.PATROL;
+        yield return endFrame;
     }
 
     public void PlayerSeen()
     {
         if (isAlert)
-        {            
+        {
+            agent.isStopped = true;
+            currentState = States.ALARMED;
             StartCoroutine(AttackTimeCountdown());
             
         } else
         {
+            agent.isStopped = true;
             canSeePlayer = true;
             anim.SetBool("IsAlert", true);
+            StartCoroutine(AlarmedCountdown());
         }
     }
     public void PlayerOutOfVeiw()

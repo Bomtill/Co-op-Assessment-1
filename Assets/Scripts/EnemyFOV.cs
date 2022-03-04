@@ -14,25 +14,26 @@ public class EnemyFOV : MonoBehaviour
     public LayerMask obstructionMask;
     PatrolEnemy patrolEnemyClass;
 
-    bool hasSeenPlayer = false;
+    bool canSeePlayer = false;
+    float delay = 0.2f;
     
+
     // Start is called before the first frame update
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        patrolEnemyClass = GetComponent<PatrolEnemy>();
+        patrolEnemyClass = GetComponentInParent<PatrolEnemy>();
         StartCoroutine(FOVRoutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // if time stopped or paused stop coroutine and then restart once time is goin again.
     }
 
     private IEnumerator FOVRoutine()
     {
-        float delay = 0.2f;
         WaitForSeconds wait = new WaitForSeconds(delay);
         while (true)
         {
@@ -49,7 +50,7 @@ public class EnemyFOV : MonoBehaviour
         // if things in range is greater than 0
         if (rangeChecks.Length != 0)
         {
-            Transform target = rangeChecks[0].transform; //might need a for loop to check for other player?
+            Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
             Debug.Log("EnemyFOV.Seen Something");
             // if direction to target is within the view angle
@@ -60,12 +61,16 @@ public class EnemyFOV : MonoBehaviour
                 // if a raycast from enemy to the player and doesn't hit an obstuction
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
-                    patrolEnemyClass.PlayerSeen();
-                    hasSeenPlayer = true;
-                    Debug.Log("EnemyFOV.Player seen");
-                } else if (hasSeenPlayer) { patrolEnemyClass.PlayerOutOfVeiw(); hasSeenPlayer = false; } else return;
+                    if (!canSeePlayer)
+                    {
+                        patrolEnemyClass.PlayerSeen();
+                        canSeePlayer = true;
+                        Debug.Log("EnemyFOV.Player seen");
+                    } else { Debug.Log("EnemyFOV.Player in view"); } return;
+                   
+                } else if (canSeePlayer) { patrolEnemyClass.PlayerOutOfVeiw(); canSeePlayer = false; } else return;
 
-            } else if (hasSeenPlayer) { patrolEnemyClass.PlayerOutOfVeiw(); hasSeenPlayer = false; } else return;
-        } else if (hasSeenPlayer) { patrolEnemyClass.PlayerOutOfVeiw(); hasSeenPlayer = false; } else return;
+            } else if (canSeePlayer) { patrolEnemyClass.PlayerOutOfVeiw(); canSeePlayer = false; } else return;
+        } else if (canSeePlayer) { patrolEnemyClass.PlayerOutOfVeiw(); canSeePlayer = false; } else return;
     }
 }
