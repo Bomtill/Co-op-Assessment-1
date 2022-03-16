@@ -5,16 +5,25 @@ using UnityEngine.UI;
 
 public class InfoPopUp : MonoBehaviour
 {
-    [SerializeField] GameObject textPopUp;
+    //[SerializeField] GameObject textPopUp;
     BoxCollider triggerZone;
+    Canvas canvas;
+    public Text text;
+    //[SerializeField] Text infoText;
+    public string textToShow = "Put Text Here";
 
     public bool playerInZone;
 
     // Start is called before the first frame update
     void Start()
     {
-        textPopUp.SetActive(false);
+        
+        canvas = GetComponentInChildren<Canvas>();
+        canvas.worldCamera = Camera.main;
+        canvas.enabled = false;
         triggerZone = GetComponent<BoxCollider>();
+        text = GetComponentInChildren<Text>();
+        text.text = textToShow;
     }
 
     // Update is called once per frame
@@ -30,7 +39,7 @@ public class InfoPopUp : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             playerInZone = true;
-            textPopUp.SetActive(true);
+            canvas.enabled = true;
         }
     }
 
@@ -39,7 +48,7 @@ public class InfoPopUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInZone = false;
-            textPopUp.SetActive(false);
+            canvas.enabled = false;
         }
     }
 

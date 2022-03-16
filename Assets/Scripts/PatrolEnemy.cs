@@ -9,6 +9,7 @@ public class PatrolEnemy : MonoBehaviour
     Transform targetPlayer;
     Transform lastKnowPosition;
     Animator anim;
+    Time localTime;
 
     [Tooltip("Tick if the character is a Scientist, instead of a Guard")]
     [SerializeField] bool isScientist;
@@ -35,6 +36,7 @@ public class PatrolEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         //viewCone = GetComponentInChildren<MeshCollider>();
@@ -97,6 +99,10 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator ATTACK()
     {
         Debug.Log("Game Over");
+        while (currentState == States.ATTACK)
+        {
+
+        }
         yield return endFrame;
     }
     IEnumerator ALARMED()
