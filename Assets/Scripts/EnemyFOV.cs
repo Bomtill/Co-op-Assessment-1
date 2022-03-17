@@ -46,7 +46,7 @@ public class EnemyFOV : MonoBehaviour
     {
         // check range of things with the layers set in the sphere view range
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
-        Debug.Log("EnemyFOV.Check");
+        //Debug.Log("EnemyFOV.Check");
         // if things in range is greater than 0
         if (rangeChecks.Length != 0)
         {

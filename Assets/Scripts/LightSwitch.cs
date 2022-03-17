@@ -1,31 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class LightSwitch : MonoBehaviour , IInteractable
 {
     [SerializeField] List<Light> lights = new List<Light>();
     [SerializeField] bool lightsAreOn = true;
+    [SerializeField] GameObject textPopUp;
 
     MeshRenderer lightSwitch;
-    bool playerInRange = false;
+    public bool playerInRange = false;
 
     // Start is called before the first frame update
     void Start()
     {
         lightSwitch = GetComponentInChildren<MeshRenderer>();
         lightSwitch.material.color = Color.green;
-        
+        //textPopUp = GetComponentInChildren<InfoPopUp>();
+
+        textPopUp.SetActive(false);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-        } else playerInRange = false;
+            textPopUp.SetActive(true);
+        } 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            textPopUp.SetActive(false);
+        }
     }
 
     public void Interact()

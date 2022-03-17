@@ -10,6 +10,9 @@ public class PatrolEnemy : MonoBehaviour
     Transform lastKnowPosition;
     Animator anim;
     Time localTime;
+    [SerializeField] GameObject exclamationPoint;
+    [SerializeField] GameObject questionMark;
+    [SerializeField] GameObject exclamationPointRed;
 
     [Tooltip("Tick if the character is a Scientist, instead of a Guard")]
     [SerializeField] bool isScientist;
@@ -98,10 +101,11 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator ATTACK()
     {
-        Debug.Log("Game Over");
         while (currentState == States.ATTACK)
         {
-
+            Debug.Log("Game Over");
+            StopAllCoroutines();
+            yield return endFrame;
         }
         yield return endFrame;
     }
@@ -134,7 +138,6 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator AlarmedCountdown()
     {
-
         yield return new WaitForSeconds(alertTime);
         currentState = States.ALARMED;
         yield return endFrame;
