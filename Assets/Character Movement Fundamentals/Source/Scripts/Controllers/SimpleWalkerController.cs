@@ -57,13 +57,6 @@ namespace CMF
                     currentVerticalSpeed = 0f;
             }
 
-            //Handle jumping;
-            if ((characterInput != null) && isGrounded && characterInput.IsJumpKeyPressed())
-            {
-                OnJumpStart();
-                currentVerticalSpeed = jumpSpeed;
-                isGrounded = false;
-            }
 
             //Add vertical velocity;
             _velocity += tr.up * currentVerticalSpeed;

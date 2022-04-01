@@ -51,10 +51,17 @@ namespace CMF
 			return _verticalInput;
 		}
 
-		public override bool IsJumpKeyPressed()
-		{
-			return Input.GetKey(jumpKey);
-		}
-
-	}
+        public override bool IsActivateKeyPressed()
+        {
+            throw new System.NotImplementedException();
+        }
+        public override bool IsPowerKeyReleased()
+        {
+            throw new System.NotImplementedException();
+        }
+        public override bool IsPowerKeyPressed()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,8 @@ public class LightSwitch : MonoBehaviour , IInteractable
     [SerializeField] List<Light> lights = new List<Light>();
     [SerializeField] bool lightsAreOn = true;
     [SerializeField] GameObject textPopUp;
-
     MeshRenderer lightSwitch;
-    public bool playerInRange = false;
+    [SerializeField] bool playerInRange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class LightSwitch : MonoBehaviour , IInteractable
     {
         if (other.CompareTag("Player"))
         {
+            
             playerInRange = true;
             textPopUp.SetActive(true);
         } 
@@ -38,39 +39,52 @@ public class LightSwitch : MonoBehaviour , IInteractable
             textPopUp.SetActive(false);
         }
     }
-
+    
+    private void OnEnable()
+    {
+        CMF.PlayerActivate.InteractEvent += Interact;
+    }
+    private void OnDisable() // don't understand this.
+    {
+        CMF.PlayerActivate.InteractEvent -= Interact;
+    }
+    
     public void Interact()
     {
-        if (lightsAreOn)
+        if (playerInRange)
         {
-            TurnLightsOff();
-        }
-        if (!lightsAreOn)
-        {
-            TurnLightsOn();
-        }
-    }
-    // Update is called once per frame
-    void Update()
-    {
+            if (lightsAreOn)
+            {
+                TurnLightsOff();
+                
+            }
+            else if (!lightsAreOn)
+            {
+                TurnLightsOn();
+            }
+            lightsAreOn = !lightsAreOn;
+        } else return;
         
     }
+    
 
     public void TurnLightsOff()
     {
+        //lightsAreOn = false;
         lightSwitch.material.color = Color.red;
         foreach (Light i in lights)
         {
-            i.enabled = true;
+            i.enabled = false;
         }
     }
 
     public void TurnLightsOn()
     {
+        //lightsAreOn = true;
         lightSwitch.material.color = Color.green;
         foreach (Light i in lights)
         {
-            i.enabled = false;
+            i.enabled = true;
         }
     }
 }

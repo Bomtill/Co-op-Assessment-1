@@ -230,8 +230,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInputAxis: AltHorizontal
   verticalInputAxis: AltVertical
-  jumpKey: 32
+  activateKey: 101
+  powerKey: 113
   useRawInput: 1
+  canMove: 1
 --- !u!114 &6138870411852659990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4650acabe1d6aa6429e42554f1f0feb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationMultiplyer: 0.5
   useStrafeAnimations: 0
   landVelocityThreshold: 5
 --- !u!114 &6138437367147996280
@@ -375,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Female Standing Pose
       objectReference: {fileID: 0}
+    - target: {fileID: 3853268898807207900, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 364acff20bfc8c848b5b8c0325424646, type: 2}
     - target: {fileID: 5866666021909216657, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -383,6 +390,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6148737315974723067, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 364acff20bfc8c848b5b8c0325424646, type: 2}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}

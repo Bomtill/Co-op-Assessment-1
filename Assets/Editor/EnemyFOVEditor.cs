@@ -7,7 +7,7 @@ public class EnemyFOVEditor : Editor
 {
     private void OnSceneGUI()
     {
-        // FOV doesn't update rotation when in play mode, FOV seems to update in game though.
+        // FOV doesn't update rotation when in play mode, FOV updates in game though.
         EnemyFOV fov = (EnemyFOV)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
@@ -18,18 +18,7 @@ public class EnemyFOVEditor : Editor
         Handles.color = Color.yellow;
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.radius);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.radius);
-        /*
-        if (fov.canSeePlayer)
-        {
-            Handles.color = Color.green;
-            
-            foreach (GameObject players in players)
-            {
-
-            }
-            
-            Handles.DrawLine(fov.transform.position, fov.players.transfrom.position); // would need to be a for each loop
-        }*/
+        
     }
 
     private Vector3 DirectionFromAngle(float eulerY,float angleInDegrees)

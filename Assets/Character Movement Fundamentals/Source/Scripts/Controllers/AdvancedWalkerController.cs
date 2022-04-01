@@ -93,27 +93,6 @@ namespace CMF
 		{
 		}
 
-		void Update()
-		{
-			HandleJumpKeyInput();
-		}
-
-        //Handle jump booleans for later use in FixedUpdate;
-        void HandleJumpKeyInput()
-        {
-            bool _newJumpKeyPressedState = IsJumpKeyPressed();
-
-            if (jumpKeyIsPressed == false && _newJumpKeyPressedState == true)
-                jumpKeyWasPressed = true;
-
-            if (jumpKeyIsPressed == true && _newJumpKeyPressedState == false)
-            {
-                jumpKeyWasLetGo = true;
-                jumpInputIsLocked = false;
-            }
-
-            jumpKeyIsPressed = _newJumpKeyPressedState;
-        }
 
         void FixedUpdate()
 		{
@@ -214,15 +193,6 @@ namespace CMF
 			return _velocity;
 		}
 
-		//Returns 'true' if the player presses the jump key;
-		protected virtual bool IsJumpKeyPressed()
-		{
-			//If no character input script is attached to this object, return;
-			if(characterInput == null)
-				return false;
-
-			return characterInput.IsJumpKeyPressed();
-		}
 
 		//Determine current controller state based on current momentum and whether the controller is grounded (or not);
 		//Handle state transitions;

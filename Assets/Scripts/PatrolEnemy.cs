@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,10 @@ using UnityEngine.AI;
 
 public class PatrolEnemy : MonoBehaviour
 {
+    public static event Action GameOverEvent;
     NavMeshAgent agent;
     Transform targetPlayer;
-    Transform lastKnowPosition;
+    Vector3 lastKnowPosition;
     Animator anim;
     Time localTime;
     [SerializeField] GameObject exclamationPoint;
@@ -22,6 +24,7 @@ public class PatrolEnemy : MonoBehaviour
     enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND }
     [SerializeField] States currentState;
 
+    bool attackTimerRunning = false;
     bool isAlert = false;
     bool isSearching = false;
     public bool canSeePlayer;
@@ -45,6 +48,10 @@ public class PatrolEnemy : MonoBehaviour
         //viewCone = GetComponentInChildren<MeshCollider>();
         currentState = States.IDLE;
         StartCoroutine(SM());
+
+        exclamationPoint.SetActive(false);
+        exclamationPointRed.SetActive(false);
+        questionMark.SetActive(false);
     }
 
     // Update is called once per frame
@@ -97,35 +104,45 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator SEARCH()
     {
         isSearching = true;
+        agent.SetDestination(lastKnowPosition);
         yield return null;
     }
     IEnumerator ATTACK()
     {
+        attackTimerRunning = false;
         while (currentState == States.ATTACK)
         {
+            GameOverEvent?.Invoke();
             Debug.Log("Game Over");
             StopAllCoroutines();
             yield return endFrame;
         }
-        yield return endFrame;
+        yield return null;
     }
     IEnumerator ALARMED()
     {
-        // Exlamation point ! like MGS
         // anim.play caution or look animation
         Debug.Log("huh, what are you doing!");
+        
         isAlert = true;
-        while (currentState == States.ALARMED)
+        if (canSeePlayer)
         {
-            if (isScientist)
+            while (currentState == States.ALARMED)
             {
-                currentState = States.RUNAWAY;
-            } else
-            {
-                StartCoroutine(AttackTimeCountdown());
+                if (isScientist)
+                {
+                    currentState = States.RUNAWAY;
+                    yield return endFrame;
+                } else
+                {
+                    exclamationPoint.SetActive(false);
+                    StartCoroutine("AttackTimeCountdown");
+                    yield return endFrame;
+                }
             }
         }
-        yield return endFrame;
+        
+        yield return null;
     }
     IEnumerator PAUSED() // for when players pause time
     {
@@ -138,46 +155,64 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator AlarmedCountdown()
     {
+        exclamationPoint.SetActive(true);
         yield return new WaitForSeconds(alertTime);
+        //exclamationPoint.SetActive(false);
         currentState = States.ALARMED;
-        yield return endFrame;
+        yield return null;
     }
 
     IEnumerator AttackTimeCountdown()
     {
-        yield return new WaitForSeconds(attackTime);
-        currentState = States.ATTACK;
-        yield return endFrame;
+        if (!attackTimerRunning)
+        {
+            attackTimerRunning = true;
+            exclamationPointRed.SetActive(true);
+            yield return new WaitForSeconds(attackTime);
+            currentState = States.ATTACK;
+            yield return null;
+        } else yield return null;
+        
     }
     IEnumerator ReturnToPatrol()
     {
+        questionMark.SetActive(false);
+        anim.SetBool("IsAlert", false);
         yield return new WaitForSeconds(returnToPatrolTime);
         currentState = States.PATROL;
-        yield return endFrame;
+        isSearching = false;
+        yield return null;
     }
 
-    public void PlayerSeen()
+    public void PlayerSeen(Transform player)
     {
+        lastKnowPosition = player.position;
+        
         if (isAlert)
         {
             agent.isStopped = true;
             currentState = States.ALARMED;
-            StartCoroutine(AttackTimeCountdown());
+            StartCoroutine("AttackTimeCountdown");
             
         } else
         {
             agent.isStopped = true;
             canSeePlayer = true;
             anim.SetBool("IsAlert", true);
-            StartCoroutine(AlarmedCountdown());
+            StartCoroutine("AlarmedCountdown");
         }
     }
     public void PlayerOutOfVeiw()
     {
+        agent.isStopped = false;
+        exclamationPoint.SetActive(false);
+        exclamationPointRed.SetActive(false);
+        questionMark.SetActive(true);
         canSeePlayer = false;
-        StopCoroutine(AttackTimeCountdown());
-        StopCoroutine(AlarmedCountdown());
+        StopCoroutine("AttackTimeCountdown");
+        StopCoroutine("AlarmedCountdown");
         StartCoroutine(ReturnToPatrol());
+        currentState = States.SEARCH;
 
     }
 

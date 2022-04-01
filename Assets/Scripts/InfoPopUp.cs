@@ -8,9 +8,10 @@ public class InfoPopUp : MonoBehaviour
 {
     TMP_Text infoText;
     public string textToShow = "Put Text Here";
+    Transform mainCamera;
     void Start()
     {
-        
+        mainCamera = Camera.main.transform;
         infoText = GetComponentInChildren<TMP_Text>();
         infoText.SetText(textToShow);
     }
@@ -18,7 +19,7 @@ public class InfoPopUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(gameObject.transform.position - Camera.main.transform.position, Camera.main.transform.up);
+        transform.rotation = Quaternion.LookRotation(gameObject.transform.position - mainCamera.position, mainCamera.up);
         
     }
 }

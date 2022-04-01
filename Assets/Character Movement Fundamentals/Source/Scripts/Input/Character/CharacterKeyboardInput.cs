@@ -9,30 +9,49 @@ namespace CMF
     {
 		public string horizontalInputAxis = "Horizontal";
 		public string verticalInputAxis = "Vertical";
-		public KeyCode jumpKey = KeyCode.Space;
+		public KeyCode activateKey = KeyCode.E;
+		public KeyCode powerKey = KeyCode.Q;
 
 		//If this is enabled, Unity's internal input smoothing is bypassed;
 		public bool useRawInput = true;
+		public bool canMove = true;
 
         public override float GetHorizontalMovementInput()
 		{
-			if(useRawInput)
-				return Input.GetAxisRaw(horizontalInputAxis);
-			else
-				return Input.GetAxis(horizontalInputAxis);
+			if (canMove)
+			{
+				if (useRawInput)
+					return Input.GetAxisRaw(horizontalInputAxis);
+				else
+					return Input.GetAxis(horizontalInputAxis);
+			} else return 0f;
 		}
 
 		public override float GetVerticalMovementInput()
 		{
-			if(useRawInput)
-				return Input.GetAxisRaw(verticalInputAxis);
-			else
-				return Input.GetAxis(verticalInputAxis);
+			if (canMove)
+			{
+				if (useRawInput)
+					return Input.GetAxisRaw(verticalInputAxis);
+				else
+					return Input.GetAxis(verticalInputAxis);
+			} else return 0f;
+			
 		}
 
-		public override bool IsJumpKeyPressed()
-		{
-			return Input.GetKey(jumpKey);
-		}
+		public override bool IsPowerKeyPressed()
+        {
+			if (canMove) canMove = false;
+			return Input.GetKeyDown(powerKey);
+        }
+        public override bool IsPowerKeyReleased()
+        {
+			if (!canMove) canMove = true;
+			return Input.GetKeyUp(powerKey);
+        }
+        public override bool IsActivateKeyPressed()
+        {
+			return Input.GetKeyDown(activateKey);
+        }
     }
 }
