@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject endLevelCube;
-
+    public GameObject keyCard;
     //timer for level
     //Score counter
     // int for amount of times spotted for score
-    int activeScene;
     bool gamePaused = false;
     private float sceneTimer;
 
@@ -29,6 +28,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (keyPickedUp) keyCard.SetActive(false);
         sceneTimer = Time.timeSinceLevelLoad;
 
         if (Input.GetKeyDown(KeyCode.P))

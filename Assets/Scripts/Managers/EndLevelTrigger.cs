@@ -8,7 +8,6 @@ public class EndLevelTrigger : MonoBehaviour
     public static event Action FinishedLevelEvent;
 
     int playersInZone = 0;
-    bool onePlayerIn = false;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

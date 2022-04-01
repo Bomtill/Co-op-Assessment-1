@@ -44,7 +44,7 @@ public class LightSwitch : MonoBehaviour , IInteractable
     {
         CMF.PlayerActivate.InteractEvent += Interact;
     }
-    private void OnDisable() // don't understand this.
+    private void OnDisable()
     {
         CMF.PlayerActivate.InteractEvent -= Interact;
     }
