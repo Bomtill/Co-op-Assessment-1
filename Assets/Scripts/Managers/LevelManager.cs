@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
     bool gamePaused = false;
     private float sceneTimer;
 
+    public static string levelScore;
+    public int scoreTimer;
     public static bool keyPickedUp = false;
 
     public Canvas gameOverScreen;
@@ -83,10 +85,32 @@ public class LevelManager : MonoBehaviour
 
     public void LevelFinished()
     {
-        MySceneManager.MSMInstance.LoadNewScene(0); // return to main
+        GetScore(scoreTimer);
+        MySceneManager.MSMInstance.LoadNewScene(3); // return to main
         GameManager.GMInstance.UnlockNextLevel();
+        
     }
 
+    private IEnumerator LevelScoreTimer()
+    {
+        yield return new WaitForSeconds(45);
+        scoreTimer++;
+        yield return new WaitForSeconds(45);
+        scoreTimer++;
+        yield return new WaitForSeconds(60);
+        scoreTimer++;
+        yield return new WaitForSeconds(90);
+        scoreTimer++;
+        yield return null;
+    }
+    void GetScore(int scoreTime)
+    {
+        if (scoreTime < 1) levelScore = "S";
+        if (scoreTime == 1) levelScore = "A";
+        if (scoreTime == 2) levelScore = "B";
+        if (scoreTime == 3) levelScore = "C";
+        if (scoreTime > 3) levelScore = "D";
+    }
     
     private void OnEnable()
     {

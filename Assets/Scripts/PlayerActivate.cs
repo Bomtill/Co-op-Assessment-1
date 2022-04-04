@@ -9,7 +9,7 @@ namespace CMF
     {
         protected CharacterInput characterInput;
         // get inputs from either player
-        public PlayerPowers powerClass;
+        PlayerPowers powerClass;
         
         public static event Action InteractEvent;
         //public static event Action PowerEvent;
@@ -18,6 +18,7 @@ namespace CMF
         // Start is called before the first frame update
         void Start()
         {
+            powerClass = GetComponent<PlayerPowers>();
             characterInput = GetComponent<CharacterInput>();
         }
 

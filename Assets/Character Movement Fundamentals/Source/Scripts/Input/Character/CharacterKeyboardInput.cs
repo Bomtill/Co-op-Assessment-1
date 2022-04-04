@@ -41,12 +41,12 @@ namespace CMF
 
 		public override bool IsPowerKeyPressed()
         {
-			if (canMove) canMove = false;
+			//canMove = false; constantly being called, needs a switch or something
 			return Input.GetKeyDown(powerKey);
         }
         public override bool IsPowerKeyReleased()
         {
-			if (!canMove) canMove = true;
+			//canMove = true;
 			return Input.GetKeyUp(powerKey);
         }
         public override bool IsActivateKeyPressed()
