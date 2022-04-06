@@ -8,7 +8,8 @@ public class LobbyManager : MonoBehaviour
 {
     public TMP_InputField player1Name;
     public TMP_InputField player2Name;
-    public Button startButton;
+    public GameObject startButton;
+    Canvas hintScreen;
 
     bool player1NameIn = false;
     bool player2NameIn = false;
@@ -18,7 +19,7 @@ public class LobbyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startButton.enabled = false;
+        startButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class LobbyManager : MonoBehaviour
     {
         if (player1NameIn && player2NameIn)
         {
-            startButton.enabled = true;
+            startButton.SetActive(true);
         }
     }
 
@@ -42,6 +43,10 @@ public class LobbyManager : MonoBehaviour
         player2NameIn = true;
     }
 
+    public void NextButton() // unused
+    {
+        hintScreen.enabled = true;
+    }
     public void StartNewGame()
     {
         MySceneManager.MSMInstance.LoadNewScene(2); // Level 1

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerPowers : MonoBehaviour
 {
+    public static event Action PauseTimeEvent;
+    public static event Action RestartTimeEvent;
+
     public Image fillImage;
     private Slider powerBar;
     // will get rid of once there is only 1 mesh
@@ -20,7 +24,7 @@ public class PlayerPowers : MonoBehaviour
     public bool isPlayer1 = true;
 
     public bool powerIsActve = false;
-    [Header("Powers")]
+    [Header("Powers, Only one active at a time")]
     public bool invisibility = false;
     public bool stopTime = false;
     public bool reverseTime = false;
@@ -44,9 +48,6 @@ public class PlayerPowers : MonoBehaviour
     {
         powerBar.value = currentPowerAmount;
     }
-
-
-
     public void ActivatePower()
     {
         Debug.Log("Activate power has been called");
@@ -62,15 +63,13 @@ public class PlayerPowers : MonoBehaviour
             player2Body.material = bodyTranspartent;
             
         }
-        
-
-        //Pause time
-        // set all animation speeds and agent move speeds to zero, State in AI system toggle FOV
-
-        // Disable the controls on the player who has this script active
-        // start removing currentPowerAmount over gameindependant time.
-        // if current power hits <= 0 stop power
-        // start the countdown on the powerup timer.
+        if (stopTime)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            otherPlayer.layer = LayerMask.NameToLayer("Default");
+            StartCoroutine(PowerCountDown(currentPowerAmount));
+            PauseTimeEvent?.Invoke();
+        }
     }
 
     public void DeactivatePower()
@@ -88,6 +87,13 @@ public class PlayerPowers : MonoBehaviour
             player2Body.material = bodyDefault;
             StartCoroutine(PowerRecharge(currentPowerAmount));
         }
+        if (stopTime)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Players");
+            otherPlayer.layer = LayerMask.NameToLayer("Players");
+            RestartTimeEvent?.Invoke();
+            StartCoroutine(PowerRecharge(currentPowerAmount));
+        }
         // set everthing back to defaults.
     }
 
@@ -100,7 +106,7 @@ public class PlayerPowers : MonoBehaviour
             yield return null;
         }
         DeactivatePower();
-        Debug.Log("End Couroutine");
+        //Debug.Log("End Couroutine");
         yield return null;
     }
     IEnumerator PowerRecharge(float currentPower)

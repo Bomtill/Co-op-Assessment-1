@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInputAxis: Horizontal
   verticalInputAxis: Vertical
-  activateKey: 256
+  activateKey: 303
   powerKey: 305
   useRawInput: 1
   canMove: 1
@@ -713,7 +713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29bd03f96b959ee439d60b520b84f1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerClass: {fileID: 1275224605}
 --- !u!114 &1275224605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,13 +735,13 @@ MonoBehaviour:
   bodyTranspartent: {fileID: 2100000, guid: b4c53d1d6d12812499ff0ca32656fadf, type: 2}
   isPlayer1: 0
   powerIsActve: 0
-  invisibility: 1
-  stopTime: 0
+  invisibility: 0
+  stopTime: 1
   reverseTime: 0
   confuse: 0
   wallClip: 0
   distract: 0
-  maxPowerAmount: 5
+  maxPowerAmount: 6
   currentPowerAmount: 0
 --- !u!1001 &462069497188809270
 PrefabInstance:

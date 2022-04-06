@@ -27784,26 +27784,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2318751230575341564, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
-      propertyPath: m_text
-      value: Save Game
-      objectReference: {fileID: 0}
-    - target: {fileID: 2529445904966868911, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
-      propertyPath: m_Name
-      value: SaveGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641018699668618968, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5133953883587631768}
-    - target: {fileID: 2641018699668618968, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641018699668618968, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 5133953883356518503, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -27882,17 +27862,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
---- !u!114 &5133953883587631768 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5133953883356518520, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
-  m_PrefabInstance: {fileID: 5133953883587631767}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ce31f5ab6e3434cb45a219f4d5bf24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5838440210421003377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 346454555033880684, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}

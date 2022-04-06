@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     bool gamePaused = false;
     private float sceneTimer;
 
-    public static string levelScore;
+    
     public int scoreTimer;
     public static bool keyPickedUp = false;
 
@@ -22,9 +22,11 @@ public class LevelManager : MonoBehaviour
     public Canvas hintOverlay;
     void Start()
     {
+        Cursor.visible = false;
         gameOverScreen.enabled = false;
         menuScreen.enabled = false;
         hintOverlay.enabled = false;
+        StartCoroutine(LevelScoreTimer());
     }
 
     // Update is called once per frame
@@ -37,24 +39,27 @@ public class LevelManager : MonoBehaviour
         {
             if (!gamePaused)
             {
-                
+                Time.timeScale = 0;
+                Cursor.visible = true;
                 menuScreen.enabled = true;
                 gamePaused = true;
             } else
             {
+                Time.timeScale = 1;
+                Cursor.visible = false;
                 menuScreen.enabled = false;
                 gamePaused = false;
             }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                // have it fade in
-                hintOverlay.enabled = true;
-            }
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                hintOverlay.enabled = false;
-            }
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // have it fade in
+            Debug.Log("Spacebar pressed");
+            hintOverlay.enabled = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            hintOverlay.enabled = false;
         }
     }
     public void SaveGame()
@@ -63,7 +68,10 @@ public class LevelManager : MonoBehaviour
     }
     private void EnableGameOverScreen()
     {
+        Time.timeScale = 0;
         gameOverScreen.enabled = true;
+        GameManager.GMInstance.FadeIn();
+        Cursor.visible = true;
     }
     public void RestartLevelButton()
     {
@@ -85,8 +93,8 @@ public class LevelManager : MonoBehaviour
 
     public void LevelFinished()
     {
-        GetScore(scoreTimer);
-        MySceneManager.MSMInstance.LoadNewScene(3); // return to main
+        ScoreManager.Instance.GetScore(scoreTimer);
+        MySceneManager.MSMInstance.LoadNewScene(3); // score results page
         GameManager.GMInstance.UnlockNextLevel();
         
     }
@@ -103,14 +111,7 @@ public class LevelManager : MonoBehaviour
         scoreTimer++;
         yield return null;
     }
-    void GetScore(int scoreTime)
-    {
-        if (scoreTime < 1) levelScore = "S";
-        if (scoreTime == 1) levelScore = "A";
-        if (scoreTime == 2) levelScore = "B";
-        if (scoreTime == 3) levelScore = "C";
-        if (scoreTime > 3) levelScore = "D";
-    }
+    
     
     private void OnEnable()
     {

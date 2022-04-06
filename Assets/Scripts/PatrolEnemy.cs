@@ -9,6 +9,7 @@ public class PatrolEnemy : MonoBehaviour
     public static event Action GameOverEvent;
     NavMeshAgent agent;
     Transform targetPlayer;
+    //EnemyFOV thisEnemyFOV;
     Vector3 lastKnowPosition;
     Animator anim;
     Time localTime;
@@ -24,7 +25,10 @@ public class PatrolEnemy : MonoBehaviour
     enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND }
     [SerializeField] States currentState;
 
+    float patrolWaitTimeCounter;
     bool attackTimerRunning = false;
+    bool isIdle = false;
+    bool isTimeStopped = false;
     bool isAlert = false;
     bool isSearching = false;
     public bool canSeePlayer;
@@ -42,7 +46,7 @@ public class PatrolEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //thisEnemyFOV = GetComponentInChildren<EnemyFOV>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         //viewCone = GetComponentInChildren<MeshCollider>();
@@ -70,19 +74,26 @@ public class PatrolEnemy : MonoBehaviour
      
     IEnumerator IDLE()
     {
+        isIdle = true;
+        float timeDiff = patrolWaitTimeCounter;
+        patrolWaitTimeCounter -= Time.deltaTime;
         while (currentState == States.IDLE)
         {
-            yield return new WaitForSeconds(patrolWaitTime);
-            if (shouldPatrol)
+            yield return new WaitForSeconds(patrolWaitTime - timeDiff);
+            if (!isTimeStopped)
             {
-                currentState = States.PATROL;
+                if (shouldPatrol)
+                {
+                    currentState = States.PATROL;
+                }
             }
-
         } 
         yield return null;
     }
     IEnumerator PATROL()
     {
+        isIdle = false;
+        patrolWaitTimeCounter = 0;
         agent.SetDestination(patrolPoint[currentPatrolPoint]);
         while (currentState == States.PATROL)
         {            
@@ -103,6 +114,7 @@ public class PatrolEnemy : MonoBehaviour
 
     IEnumerator SEARCH()
     {
+        
         isSearching = true;
         agent.SetDestination(lastKnowPosition);
         yield return null;
@@ -123,7 +135,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         // anim.play caution or look animation
         Debug.Log("huh, what are you doing!");
-        
+        isIdle = false;
         isAlert = true;
         if (canSeePlayer)
         {
@@ -144,9 +156,15 @@ public class PatrolEnemy : MonoBehaviour
         
         yield return null;
     }
-    IEnumerator PAUSED() // for when players pause time
+    IEnumerator PAUSED() 
     {
-        
+        // not getting out of idle state
+        while(currentState == States.PAUSED)
+        {
+            anim.speed = 0;
+            agent.speed = 0;
+            yield return endFrame;
+        }
         yield return null;
     }
     IEnumerator REWIND() // for when players rewind time
@@ -215,6 +233,33 @@ public class PatrolEnemy : MonoBehaviour
         currentState = States.SEARCH;
 
     }
+    private void OnEnable()
+    {
+        PlayerPowers.PauseTimeEvent += PauseTimeActive;
+        PlayerPowers.RestartTimeEvent += PauseTimeInactive;
+    }
+    private void OnDisable()
+    {
+        PlayerPowers.PauseTimeEvent -= PauseTimeActive;
+        PlayerPowers.RestartTimeEvent -= PauseTimeInactive;
+    }
+    void PauseTimeActive()
+    {
+        isTimeStopped = true;
+        currentState = States.PAUSED;
+        if (attackTimerRunning) StopCoroutine(AttackTimeCountdown());
+        
+    }
+    void PauseTimeInactive()
+    {
+        isTimeStopped = false;
+        anim.speed = 1;
+        agent.speed = 1.5f;
+        if (isAlert) { PlayerOutOfVeiw(); return; }
+        if (isIdle) currentState = States.IDLE;
+        else currentState = States.PATROL;
+    }
+
 
     private void OnDrawGizmosSelected()
     {

@@ -1527,6 +1527,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 64
+  pauseTimeIsActive: 0
 --- !u!1001 &126980782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2057,6 +2058,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 64
+  pauseTimeIsActive: 0
 --- !u!4 &185653452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4789782386094420, guid: 4e93dfa2dc2429043bf8dcaef3f85256, type: 3}
@@ -19040,6 +19042,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 64
+  pauseTimeIsActive: 0
 --- !u!1001 &1328745502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23160,6 +23163,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 64
+  pauseTimeIsActive: 0
 --- !u!1001 &1641440898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29519,6 +29523,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2076101291}
     - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
+      propertyPath: stopTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 897045962}
@@ -29526,6 +29534,14 @@ PrefabInstance:
       propertyPath: player2Body
       value: 
       objectReference: {fileID: 2141331352}
+    - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
+      propertyPath: invisibility
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
+      propertyPath: maxPowerAmount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2102184603, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -29581,6 +29597,10 @@ PrefabInstance:
     - target: {fileID: 463839572253388673, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
       propertyPath: m_Name
       value: TopDownWalker_Slow
+      objectReference: {fileID: 0}
+    - target: {fileID: 576081837768655473, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
+      propertyPath: activateKey
+      value: 303
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}

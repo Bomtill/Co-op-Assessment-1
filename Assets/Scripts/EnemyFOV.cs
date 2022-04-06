@@ -13,6 +13,7 @@ public class EnemyFOV : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     PatrolEnemy patrolEnemyClass;
+    public bool pauseTimeIsActive = false;
 
     bool canSeePlayer = false;
     float delay = 0.2f;
@@ -40,6 +41,7 @@ public class EnemyFOV : MonoBehaviour
             yield return wait;
             FOVCheck();
         }
+        yield return null;
     }
 
     private void FOVCheck()
@@ -52,11 +54,11 @@ public class EnemyFOV : MonoBehaviour
         {
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
-            Debug.Log("EnemyFOV. something in range");
+            //Debug.Log("EnemyFOV. something in range");
             // if direction to target is within the view angle
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
-                Debug.Log("EnemyFOV. Something in view");
+                //Debug.Log("EnemyFOV. Something in view");
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 // if a raycast from enemy to the player and doesn't hit an obstuction
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
@@ -65,7 +67,8 @@ public class EnemyFOV : MonoBehaviour
                     {
                         patrolEnemyClass.PlayerSeen(target);
                         canSeePlayer = true;
-                        Debug.Log("EnemyFOV. Player seen");
+                        ScoreManager.playerSeenCount++;
+                        //Debug.Log("EnemyFOV. Player seen");
                     } else { Debug.Log("EnemyFOV.Player in view"); } return;
                    
                 } else if (canSeePlayer) { patrolEnemyClass.PlayerOutOfVeiw(); canSeePlayer = false; } else return;

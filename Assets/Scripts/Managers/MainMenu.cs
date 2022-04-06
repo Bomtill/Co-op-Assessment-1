@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        
+        Cursor.visible = true;
         settingsMenu.enabled = false;
         levelSelect.enabled = false;
     }

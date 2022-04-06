@@ -32,10 +32,6 @@ public class GameManager : MonoBehaviour
     }
 
     
-    private void Update()
-    {
-
-    }
     public void LoadSaveGame()
     {
         saveData = SaveSystem.instance.LoadGame();
@@ -57,12 +53,11 @@ public class GameManager : MonoBehaviour
         fadeAnimator = GameObject.Find("FadeCanvas").GetComponentInChildren<Animator>();
         levelManager = GameObject.Find("LevelManager");
         Invoke("FadeEffect", 1f);
+        Time.timeScale = 1;
         if (levelManager != null)
         {
-            // reset points
-            // reset score
-            // reset AI
-            // reset Spawns
+            ScoreManager.playerSeenCount = 0;
+            LevelManager.keyPickedUp = false;
         }
     }
 
@@ -74,7 +69,7 @@ public class GameManager : MonoBehaviour
     {
         GameData.playerTwoNameData = name2;
     }
-    public void FadeIn() // null reference to old animator
+    public void FadeIn() 
     {
         fadeAnimator.SetTrigger("FadeIn");
     }

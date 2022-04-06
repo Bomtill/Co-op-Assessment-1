@@ -14,39 +14,32 @@ namespace CMF
 
 		//If this is enabled, Unity's internal input smoothing is bypassed;
 		public bool useRawInput = true;
-		public bool canMove = true;
 
         public override float GetHorizontalMovementInput()
 		{
-			if (canMove)
-			{
-				if (useRawInput)
-					return Input.GetAxisRaw(horizontalInputAxis);
-				else
-					return Input.GetAxis(horizontalInputAxis);
-			} else return 0f;
+			if (useRawInput)
+				return Input.GetAxisRaw(horizontalInputAxis);
+			else
+				return Input.GetAxis(horizontalInputAxis);
 		}
 
 		public override float GetVerticalMovementInput()
 		{
-			if (canMove)
-			{
-				if (useRawInput)
-					return Input.GetAxisRaw(verticalInputAxis);
-				else
-					return Input.GetAxis(verticalInputAxis);
-			} else return 0f;
-			
+			if (useRawInput)
+				return Input.GetAxisRaw(verticalInputAxis);
+			else
+				return Input.GetAxis(verticalInputAxis);
+
 		}
 
 		public override bool IsPowerKeyPressed()
         {
-			//canMove = false; constantly being called, needs a switch or something
+			
 			return Input.GetKeyDown(powerKey);
         }
         public override bool IsPowerKeyReleased()
         {
-			//canMove = true;
+			
 			return Input.GetKeyUp(powerKey);
         }
         public override bool IsActivateKeyPressed()
