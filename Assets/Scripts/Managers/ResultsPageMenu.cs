@@ -12,6 +12,8 @@ public class ResultsPageMenu : MonoBehaviour
     private void Awake()
     {
         Cursor.visible = true;
+        lastresult.SetText(ScoreManager.Instance.levelScore);
+        plusMinusActive.SetText(ScoreManager.Instance.plusMinus);
     }
     public void SaveGameButton()
     {

@@ -8,11 +8,10 @@ public class PatrolEnemy : MonoBehaviour
 {
     public static event Action GameOverEvent;
     NavMeshAgent agent;
-    Transform targetPlayer;
-    //EnemyFOV thisEnemyFOV;
     Vector3 lastKnowPosition;
     Animator anim;
-    Time localTime;
+    ParticleSystem gunShot;
+    // put these in a switch or enum so only one can be active
     [SerializeField] GameObject exclamationPoint;
     [SerializeField] GameObject questionMark;
     [SerializeField] GameObject exclamationPointRed;
@@ -46,13 +45,11 @@ public class PatrolEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //thisEnemyFOV = GetComponentInChildren<EnemyFOV>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        //viewCone = GetComponentInChildren<MeshCollider>();
         currentState = States.IDLE;
         StartCoroutine(SM());
-
+        gunShot = GetComponentInChildren<ParticleSystem>();
         exclamationPoint.SetActive(false);
         exclamationPointRed.SetActive(false);
         questionMark.SetActive(false);
@@ -114,7 +111,7 @@ public class PatrolEnemy : MonoBehaviour
 
     IEnumerator SEARCH()
     {
-        
+        questionMark.SetActive(true);
         isSearching = true;
         agent.SetDestination(lastKnowPosition);
         yield return null;
@@ -124,6 +121,7 @@ public class PatrolEnemy : MonoBehaviour
         attackTimerRunning = false;
         while (currentState == States.ATTACK)
         {
+            gunShot.Play();
             GameOverEvent?.Invoke();
             Debug.Log("Game Over");
             StopAllCoroutines();
@@ -148,6 +146,7 @@ public class PatrolEnemy : MonoBehaviour
                 } else
                 {
                     exclamationPoint.SetActive(false);
+                    questionMark.SetActive(false);
                     StartCoroutine("AttackTimeCountdown");
                     yield return endFrame;
                 }

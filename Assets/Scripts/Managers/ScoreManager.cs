@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     // get score from level manager
     //public static int score;
-    public static string levelScore;
+    public string levelScore;
     public string plusMinus;
     public static int playerSeenCount = 0;
 
@@ -29,12 +29,7 @@ public class ScoreManager : MonoBehaviour
         localInstance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void GetScore(int scoreTime)
+    public void SetScore(int scoreTime)
     {
         if (scoreTime < 1) levelScore = "S";
         if (scoreTime == 1) levelScore = "A";

@@ -7,9 +7,6 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject endLevelCube;
     public GameObject keyCard;
-    //timer for level
-    //Score counter
-    // int for amount of times spotted for score
     bool gamePaused = false;
     private float sceneTimer;
 
@@ -17,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public int scoreTimer;
     public static bool keyPickedUp = false;
 
+    public MeshRenderer exitArrow;
     public Canvas gameOverScreen;
     public Canvas menuScreen;
     public Canvas hintOverlay;
@@ -27,6 +25,7 @@ public class LevelManager : MonoBehaviour
         menuScreen.enabled = false;
         hintOverlay.enabled = false;
         StartCoroutine(LevelScoreTimer());
+        exitArrow.enabled = false;
     }
 
     // Update is called once per frame
@@ -53,13 +52,15 @@ public class LevelManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // have it fade in
-            Debug.Log("Spacebar pressed");
+            
+            //Debug.Log("Spacebar pressed");
             hintOverlay.enabled = true;
+            exitArrow.enabled = true;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             hintOverlay.enabled = false;
+            exitArrow.enabled = false;
         }
     }
     public void SaveGame()
@@ -68,7 +69,6 @@ public class LevelManager : MonoBehaviour
     }
     private void EnableGameOverScreen()
     {
-        Time.timeScale = 0;
         gameOverScreen.enabled = true;
         GameManager.GMInstance.FadeIn();
         Cursor.visible = true;
@@ -88,17 +88,20 @@ public class LevelManager : MonoBehaviour
     {
         GameManager.GMInstance.FadeEffect();
         Invoke("EnableGameOverScreen", 1.5f);
-        // do game over thing
+        //Invoke("StopGameAfterGameOver", 2.5f);
     }
 
     public void LevelFinished()
     {
-        ScoreManager.Instance.GetScore(scoreTimer);
+        ScoreManager.Instance.SetScore(scoreTimer);
         MySceneManager.MSMInstance.LoadNewScene(3); // score results page
         GameManager.GMInstance.UnlockNextLevel();
         
     }
-
+    private void StopGameAfterGameOver()
+    {
+        Time.timeScale = 0;
+    }
     private IEnumerator LevelScoreTimer()
     {
         yield return new WaitForSeconds(45);

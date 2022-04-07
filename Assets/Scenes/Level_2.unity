@@ -1415,7 +1415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: alertTime
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: moveSpeed
@@ -1427,7 +1427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: attackTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: patrolWaitTime
@@ -5672,7 +5672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: alertTime
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: moveSpeed
@@ -5684,7 +5684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: attackTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: questionMark
@@ -22546,6 +22546,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00debf980412c49418327c56a1a60db0, type: 3}
+--- !u!23 &1579046866 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7329691765050690933, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+  m_PrefabInstance: {fileID: 2050566952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1585024687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4477030707949804, guid: 00debf980412c49418327c56a1a60db0, type: 3}
@@ -23361,6 +23366,14 @@ PrefabInstance:
       value: EnemyCharacter (3)
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: alertTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: attackTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: shouldPatrol
       value: 0
       objectReference: {fileID: 0}
@@ -23853,7 +23866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: alertTime
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: moveSpeed
@@ -23865,7 +23878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: attackTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: patrolWaitTime
@@ -23981,13 +23994,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2015064088557957339, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892681, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: m_Speed
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: alertTime
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: moveSpeed
@@ -23999,7 +24016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: attackTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: shouldPatrol
@@ -26448,6 +26465,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1469051696}
+  - {fileID: 2050566953}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28421,6 +28439,68 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4505778967708858, guid: 8b1040fedd8c3484ba95a29f1f562955, type: 3}
   m_PrefabInstance: {fileID: 1548013080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2050566952
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1859985548}
+    m_Modifications:
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248868777061709881, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_Name
+      value: PointerArrow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+--- !u!4 &2050566953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+  m_PrefabInstance: {fileID: 2050566952}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2050611887 stripped
 GameObject:
@@ -30727,6 +30807,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5031246070783217324, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5133953883356518503, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -30775,6 +30859,10 @@ PrefabInstance:
       propertyPath: keyCard
       value: 
       objectReference: {fileID: 1381865505}
+    - target: {fileID: 5133953883356518520, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
+      propertyPath: exitArrow
+      value: 
+      objectReference: {fileID: 1579046866}
     - target: {fileID: 5133953883356518520, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
       propertyPath: endLevelCube
       value: 
@@ -30975,7 +31063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: alertTime
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: moveSpeed
@@ -30987,7 +31075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: attackTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: patrolWaitTime

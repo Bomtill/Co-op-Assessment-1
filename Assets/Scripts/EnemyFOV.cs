@@ -16,7 +16,7 @@ public class EnemyFOV : MonoBehaviour
     public bool pauseTimeIsActive = false;
 
     bool canSeePlayer = false;
-    float delay = 0.2f;
+    private float delay = 0.2f;
     
 
     // Start is called before the first frame update
@@ -27,12 +27,6 @@ public class EnemyFOV : MonoBehaviour
         StartCoroutine(FOVRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // if time stopped or paused stop coroutine and then restart once time is goin again.
-    }
-
     private IEnumerator FOVRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(delay);
@@ -41,7 +35,6 @@ public class EnemyFOV : MonoBehaviour
             yield return wait;
             FOVCheck();
         }
-        yield return null;
     }
 
     private void FOVCheck()

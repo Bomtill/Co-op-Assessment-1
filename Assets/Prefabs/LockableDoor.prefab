@@ -274,7 +274,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25224041887886992, guid: d292f284bb1c4034c9a9ea4a218c8ebe, type: 3}
       propertyPath: m_text
-      value: Locked Door
+      value: 'Door is locked
+
+        Find the key'
       objectReference: {fileID: 0}
     - target: {fileID: 158211425358827179, guid: d292f284bb1c4034c9a9ea4a218c8ebe, type: 3}
       propertyPath: m_PresetInfoIsWorld

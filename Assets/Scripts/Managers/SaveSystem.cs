@@ -6,9 +6,6 @@ public class SaveSystem : MonoBehaviour
 {
     //Singleton
     static public SaveSystem instance;
-
-
-
     string filePath;
     string fileName; // could have the player set the file name for seperate saves
     

@@ -14,6 +14,7 @@ namespace CMF
 		protected Mover mover;
 		protected CharacterInput characterInput;
 		protected CeilingDetector ceilingDetector;
+		protected PlayerPowers playerPowers;
 
         //Jump key variables;
         bool jumpInputIsLocked = false;
@@ -23,6 +24,7 @@ namespace CMF
 
 		//Movement speed;
 		public float movementSpeed = 7f;
+		private float lastMovementSpeed;
 
 		//How fast the controller can change direction while in the air;
 		//Higher values result in more air control;
@@ -81,7 +83,8 @@ namespace CMF
 			tr = transform;
 			characterInput = GetComponent<CharacterInput>();
 			ceilingDetector = GetComponent<CeilingDetector>();
-
+			playerPowers = GetComponent<PlayerPowers>();
+			lastMovementSpeed = movementSpeed;
 			if(characterInput == null)
 				Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
 
@@ -97,7 +100,12 @@ namespace CMF
         void FixedUpdate()
 		{
 			ControllerUpdate();
+			if (playerPowers.powerIsActve)
+			{
+				movementSpeed = 0f;
+			} else movementSpeed = lastMovementSpeed;
 		}
+
 
 		//Update controller;
 		//This function must be called every fixed update, in order for the controller to work correctly;
