@@ -9,7 +9,7 @@ public class PlayerPowers : MonoBehaviour
     public static event Action PauseTimeEvent;
     public static event Action RestartTimeEvent;
 
-
+    public Image stopTimeEffect;
     public Image fillImage;
     private Slider powerBar;
     // will get rid of once there is only 1 mesh
@@ -25,14 +25,8 @@ public class PlayerPowers : MonoBehaviour
     public bool isPlayer1 = true;
 
     public bool powerIsActve = false;
-    [Header("Powers, Only one active at a time")]
     public bool invisibility = false;
     public bool stopTime = false;
-    public bool reverseTime = false;
-    public bool confuse = false;
-    public bool wallClip = false;
-    public bool distract = false;
-
     //could have an enum for different powers? and changes which one is active through the inspector.
     
     public float maxPowerAmount = 5;
@@ -43,6 +37,7 @@ public class PlayerPowers : MonoBehaviour
         powerBar = GetComponentInChildren<Slider>();
         currentPowerAmount = maxPowerAmount;
         powerBar.maxValue = maxPowerAmount;
+        stopTimeEffect.enabled = false;
     }
 
     private void Update()
@@ -66,6 +61,7 @@ public class PlayerPowers : MonoBehaviour
         }
         if (stopTime)
         {
+            stopTimeEffect.enabled = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
             otherPlayer.layer = LayerMask.NameToLayer("Default");
             StartCoroutine(PowerCountDown(currentPowerAmount));
@@ -90,6 +86,7 @@ public class PlayerPowers : MonoBehaviour
         }
         if (stopTime)
         {
+            stopTimeEffect.enabled = false;
             gameObject.layer = LayerMask.NameToLayer("Players");
             otherPlayer.layer = LayerMask.NameToLayer("Players");
             RestartTimeEvent?.Invoke();

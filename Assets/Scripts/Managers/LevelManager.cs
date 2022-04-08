@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public Canvas hintOverlay;
     void Start()
     {
+        ScoreManager.playerSeenCount = 0;
         Cursor.visible = false;
         gameOverScreen.enabled = false;
         menuScreen.enabled = false;
@@ -93,6 +94,7 @@ public class LevelManager : MonoBehaviour
 
     public void LevelFinished()
     {
+        ScoreManager.Instance.PlusActive(ScoreManager.playerSeenCount);
         ScoreManager.Instance.SetScore(scoreTimer);
         MySceneManager.MSMInstance.LoadNewScene(3); // score results page
         GameManager.GMInstance.UnlockNextLevel();

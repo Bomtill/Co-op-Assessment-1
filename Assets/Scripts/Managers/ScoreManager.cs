@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     //public static int score;
     public string levelScore;
     public string plusMinus;
-    public static int playerSeenCount = 0;
+    public static int playerSeenCount;
 
 
     #region Singleton
@@ -37,7 +37,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreTime == 3) levelScore = "C";
         if (scoreTime > 3) levelScore = "D";
     }
-    void PlusActive(int seenCount)
+    public void PlusActive(int seenCount)
     {
         if (seenCount < 1) plusMinus = "++";
         if (seenCount == 1) plusMinus = "+";

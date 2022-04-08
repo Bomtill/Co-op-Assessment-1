@@ -6,16 +6,15 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour 
 {
-    public Canvas levelSelect;
+    public Canvas loadGameMenu;
     public Canvas settingsMenu;
     public Canvas mainMenu;
 
     private void Start()
     {
-        
         Cursor.visible = true;
         settingsMenu.enabled = false;
-        levelSelect.enabled = false;
+        loadGameMenu.enabled = false;
     }
     public void NewGame()
     {
@@ -23,24 +22,32 @@ public class MainMenu : MonoBehaviour
     }
     public void LevelSelect()
     {
-        mainMenu.enabled = false;
-        levelSelect.enabled = true;
         // load unlocked scenes from Save System
         // call the appropriate scene from MySceneManager
     }
+
+    public void LoadGameButton()
+    {
+        GameManager.GMInstance.LoadSaveGame();
+    }
+    public void LoadGameMenu()
+    {
+        mainMenu.enabled = false;
+        loadGameMenu.enabled = true;
+    }
+
+
     public void SettingsButton()
     {
         mainMenu.enabled = false;
         settingsMenu.enabled = true;
-        // volume slider
-        // see controls
     }
 
 
     public void BackButton()
     {
         settingsMenu.enabled = false;
-        levelSelect.enabled = false;
+        loadGameMenu.enabled = false;
         mainMenu.enabled = true;
     }
     public void QuitGame()

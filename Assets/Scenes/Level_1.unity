@@ -27828,6 +27828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EXIT
       objectReference: {fileID: 0}
+    - target: {fileID: 2891819896336036243, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5133953883356518503, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -28315,6 +28319,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1859985548}
     m_Modifications:
+    - target: {fileID: 1854605752166878766, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8248868777061709862, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -28362,6 +28370,10 @@ PrefabInstance:
     - target: {fileID: 8248868777061709881, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
       propertyPath: m_Name
       value: PointerArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860805722615054022, guid: c068c848e5f755446805ececb0edd9ed, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c068c848e5f755446805ececb0edd9ed, type: 3}

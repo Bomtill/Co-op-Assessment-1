@@ -6,8 +6,8 @@ using TMPro;
 
 public class ResultsPageMenu : MonoBehaviour
 {
-    TMP_Text lastresult; // = ScoreManager.levelResult;
-    TMP_Text plusMinusActive;  // = ScoreManager.Instance.plusMinus;
+    public TMP_Text lastresult; // = ScoreManager.levelResult;
+    public TMP_Text plusMinusActive;  // = ScoreManager.Instance.plusMinus;
 
     private void Awake()
     {

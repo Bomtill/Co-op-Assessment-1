@@ -157,7 +157,6 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator PAUSED() 
     {
-        // not getting out of idle state
         while(currentState == States.PAUSED)
         {
             anim.speed = 0;
@@ -204,7 +203,7 @@ public class PatrolEnemy : MonoBehaviour
     public void PlayerSeen(Transform player)
     {
         lastKnowPosition = player.position;
-        
+        ScoreManager.playerSeenCount++;
         if (isAlert)
         {
             agent.isStopped = true;

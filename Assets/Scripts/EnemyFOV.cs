@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class EnemyFOV : MonoBehaviour
 {
-    public float radius;
+    [SerializeField] public float radius;
     [Range(0, 360)]
-    public float angle;
+    [SerializeField] public float angle;
 
-    //public GameObject[] players;
-
-    public LayerMask targetMask;
-    public LayerMask obstructionMask;
+    [SerializeField]public LayerMask targetMask;
+    [SerializeField]public LayerMask obstructionMask;
     PatrolEnemy patrolEnemyClass;
     public bool pauseTimeIsActive = false;
 
