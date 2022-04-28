@@ -9,8 +9,8 @@ public class PlayerPowers : MonoBehaviour
     public static event Action PauseTimeEvent;
     public static event Action RestartTimeEvent;
 
-    public Image stopTimeEffect;
-    public Image fillImage;
+    //public Image stopTimeEffect;
+    //public Image fillImage;
     private Slider powerBar;
     // will get rid of once there is only 1 mesh
     public SkinnedMeshRenderer player1;
@@ -37,7 +37,7 @@ public class PlayerPowers : MonoBehaviour
         powerBar = GetComponentInChildren<Slider>();
         currentPowerAmount = maxPowerAmount;
         powerBar.maxValue = maxPowerAmount;
-        stopTimeEffect.enabled = false;
+       // stopTimeEffect.enabled = false;
     }
 
     private void Update()
@@ -61,7 +61,7 @@ public class PlayerPowers : MonoBehaviour
         }
         if (stopTime)
         {
-            stopTimeEffect.enabled = true;
+            //stopTimeEffect.enabled = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
             otherPlayer.layer = LayerMask.NameToLayer("Default");
             StartCoroutine(PowerCountDown(currentPowerAmount));
@@ -86,7 +86,7 @@ public class PlayerPowers : MonoBehaviour
         }
         if (stopTime)
         {
-            stopTimeEffect.enabled = false;
+            //stopTimeEffect.enabled = false;
             gameObject.layer = LayerMask.NameToLayer("Players");
             otherPlayer.layer = LayerMask.NameToLayer("Players");
             RestartTimeEvent?.Invoke();

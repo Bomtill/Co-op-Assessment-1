@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private Animator fadeAnimator;
-    
-
     //set up singleton
     #region Singleton
     private static GameManager localInstance;
@@ -22,7 +20,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     GameObject levelManager;
-    GameData saveData = new GameData();
+    GameData gameData = new GameData();
 
     private void Awake()
     {
@@ -34,19 +32,19 @@ public class GameManager : MonoBehaviour
     
     public void LoadSaveGame()
     {
-        saveData = SaveSystem.instance.LoadGame();
+        gameData = SaveSystem.instance.LoadGame();
         Debug.Log("Loaded game");
     }
     public void SaveGame()
     {
-        SaveSystem.instance.SaveGame(saveData);
+        SaveSystem.instance.SaveGame(gameData);
         Debug.Log("Saved Game");
         Debug.Log(GameData.playerOneNameData);
         Debug.Log(GameData.playerTwoNameData);
     }
     public void UnlockNextLevel()
     {
-        saveData.UnlockLevel();
+        gameData.UnlockLevel();
     }
     public void SceneLoaded()
     {

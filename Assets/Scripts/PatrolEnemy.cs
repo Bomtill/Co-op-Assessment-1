@@ -204,7 +204,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         lastKnowPosition = player.position;
         ScoreManager.playerSeenCount++;
-        if (isAlert)
+        if (isAlert || isSearching)
         {
             agent.isStopped = true;
             currentState = States.ALARMED;

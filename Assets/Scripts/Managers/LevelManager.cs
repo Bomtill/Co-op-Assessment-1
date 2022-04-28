@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
         hintOverlay.enabled = false;
         StartCoroutine(LevelScoreTimer());
         exitArrow.enabled = false;
+        GameManager.GMInstance.SaveGame();
     }
 
     // Update is called once per frame

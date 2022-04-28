@@ -19,8 +19,8 @@ public class TimeScaleManager : MonoBehaviour
 
     public static float timeScale = 1;
 
-    bool canSlowTime = true;
-    bool canStopTime = true;
+    public bool canSlowTime = true;
+    public bool canStopTime = true;
 
     // Start is called before the first frame update
     void Start()
