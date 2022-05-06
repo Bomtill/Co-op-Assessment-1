@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 518082808}
   - component: {fileID: 812365166}
   - component: {fileID: 1549398281205317811}
-  m_Layer: 0
+  - component: {fileID: 8662417876590299803}
+  - component: {fileID: 1409305072656729406}
+  m_Layer: 7
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,4 +98,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741bf4353b29e594fa51bac42ad7363f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSeenCount: 0
+  levelScore: 
+  plusMinus: 
+--- !u!114 &8662417876590299803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146649440530251174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ada94071d4bb8e40a80d15506bab39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409305072656729406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146649440530251174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 19f5076e7ff9c344f8c6a0493e13d258, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0

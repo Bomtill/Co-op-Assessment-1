@@ -11,6 +11,7 @@ public class PatrolEnemy : MonoBehaviour
     Vector3 lastKnowPosition;
     Animator anim;
     ParticleSystem gunShot;
+    EnemyAudio enemyAudio;
     // put these in a switch or enum so only one can be active
     [SerializeField] GameObject exclamationPoint;
     [SerializeField] GameObject questionMark;
@@ -21,7 +22,7 @@ public class PatrolEnemy : MonoBehaviour
 
     [SerializeField] float moveSpeed, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
 
-    enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND }
+    enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND, DISTRACTED}
     [SerializeField] States currentState;
 
     float patrolWaitTimeCounter;
@@ -30,6 +31,7 @@ public class PatrolEnemy : MonoBehaviour
     bool isTimeStopped = false;
     bool isAlert = false;
     bool isSearching = false;
+    bool isPatrolling = false;
     public bool canSeePlayer;
 
 
@@ -50,6 +52,7 @@ public class PatrolEnemy : MonoBehaviour
         currentState = States.IDLE;
         StartCoroutine(SM());
         gunShot = GetComponentInChildren<ParticleSystem>();
+        enemyAudio = GetComponentInChildren<EnemyAudio>();
         exclamationPoint.SetActive(false);
         exclamationPointRed.SetActive(false);
         questionMark.SetActive(false);
@@ -90,7 +93,9 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator PATROL()
     {
         isIdle = false;
+        isPatrolling = true;
         patrolWaitTimeCounter = 0;
+        //questionMark.SetActive(false);
         agent.SetDestination(patrolPoint[currentPatrolPoint]);
         while (currentState == States.PATROL)
         {            
@@ -98,6 +103,7 @@ public class PatrolEnemy : MonoBehaviour
             {
                 currentPatrolPoint = (currentPatrolPoint + 1) % patrolPoint.Count;
                 currentState = States.IDLE;
+                isPatrolling = false;
             }
             yield return endFrame;
         }
@@ -112,8 +118,10 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator SEARCH()
     {
         questionMark.SetActive(true);
-        isSearching = true;
+        //isSearching = true;
+        // get random spot in area and SetDestination
         agent.SetDestination(lastKnowPosition);
+        yield return new WaitForSeconds(3);
         yield return null;
     }
     IEnumerator ATTACK()
@@ -122,6 +130,7 @@ public class PatrolEnemy : MonoBehaviour
         while (currentState == States.ATTACK)
         {
             gunShot.Play();
+            enemyAudio.GunShotSFX();
             GameOverEvent?.Invoke();
             Debug.Log("Game Over");
             StopAllCoroutines();
@@ -132,7 +141,7 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator ALARMED()
     {
         // anim.play caution or look animation
-        Debug.Log("huh, what are you doing!");
+        //Debug.Log("huh, what are you doing!");
         isIdle = false;
         isAlert = true;
         if (canSeePlayer)
@@ -151,7 +160,7 @@ public class PatrolEnemy : MonoBehaviour
                     yield return endFrame;
                 }
             }
-        }
+        } else currentState = States.SEARCH; isSearching = true;
         
         yield return null;
     }
@@ -161,6 +170,7 @@ public class PatrolEnemy : MonoBehaviour
         {
             anim.speed = 0;
             agent.speed = 0;
+            // need to stop the timer coroutines.
             yield return endFrame;
         }
         yield return null;
@@ -169,10 +179,20 @@ public class PatrolEnemy : MonoBehaviour
     {
         yield return null;
     }
+    IEnumerator DISTRACTED()
+    {
+        yield return null;
+        // check for lightswitch off
+        // move to distract point, either a lightswitch or a noise point after item has been thrown
+        // return to patrol state
+        
+    }
+
     IEnumerator AlarmedCountdown()
     {
         exclamationPoint.SetActive(true);
         yield return new WaitForSeconds(alertTime);
+        if (isTimeStopped) StopCoroutine(AlarmedCountdown());
         //exclamationPoint.SetActive(false);
         currentState = States.ALARMED;
         yield return null;
@@ -195,6 +215,7 @@ public class PatrolEnemy : MonoBehaviour
         questionMark.SetActive(false);
         anim.SetBool("IsAlert", false);
         yield return new WaitForSeconds(returnToPatrolTime);
+        if (isTimeStopped) StopCoroutine(ReturnToPatrol());
         currentState = States.PATROL;
         isSearching = false;
         yield return null;
@@ -204,7 +225,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         lastKnowPosition = player.position;
         ScoreManager.playerSeenCount++;
-        if (isAlert || isSearching)
+        if (isAlert)
         {
             agent.isStopped = true;
             currentState = States.ALARMED;
@@ -247,15 +268,28 @@ public class PatrolEnemy : MonoBehaviour
         currentState = States.PAUSED;
         if (attackTimerRunning) StopCoroutine(AttackTimeCountdown());
         
+        
     }
     void PauseTimeInactive()
     {
         isTimeStopped = false;
         anim.speed = 1;
         agent.speed = 1.5f;
-        if (isAlert) { PlayerOutOfVeiw(); return; }
-        if (isIdle) currentState = States.IDLE;
-        else currentState = States.PATROL;
+        if (canSeePlayer) 
+        { 
+            currentState = States.ATTACK; 
+            return; 
+        }
+        if (isAlert) 
+        { 
+            PlayerOutOfVeiw(); 
+            currentState = States.ALARMED; 
+            return; 
+        }
+        if (isSearching) { currentState = States.SEARCH; return; }
+        if (isIdle) { currentState = States.IDLE; return; }
+        if (isPatrolling)  currentState = States.PATROL;
+        return;
     }
 
 
