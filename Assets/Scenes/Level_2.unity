@@ -29528,10 +29528,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2076101291}
     - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: stopTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 897045962}
@@ -29539,14 +29535,6 @@ PrefabInstance:
       propertyPath: player2Body
       value: 
       objectReference: {fileID: 2141331352}
-    - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: invisibility
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1275224605, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: maxPowerAmount
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2102184603, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -29606,22 +29594,6 @@ PrefabInstance:
     - target: {fileID: 576081837768655473, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
       propertyPath: activateKey
       value: 303
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304515709602574758, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497249260896561300, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: m_Color.b
-      value: 0.21960786
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497249260896561300, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: m_Color.g
-      value: 0.21960786
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497249260896561300, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
-      propertyPath: m_Color.r
-      value: 0.21960786
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 575963987387829717, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}

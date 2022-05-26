@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class LobbyManager : MonoBehaviour
 {
     public TMP_InputField player1Name;
