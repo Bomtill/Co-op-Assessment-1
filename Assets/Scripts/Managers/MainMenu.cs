@@ -36,6 +36,10 @@ public class MainMenu : MonoBehaviour
     {
         MySceneManager.MSMInstance.LoadNewScene(1); // lobby scene
     }
+    public void OnlineButton()
+    {
+        MySceneManager.MSMInstance.LoadNewScene(6);
+    }
     public void LevelSelect()
     {
         mainMenu.enabled = false;

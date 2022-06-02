@@ -1489,6 +1489,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7886227799095301010, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8489316261975293104, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: MaxDistance
       value: 10
@@ -5702,6 +5706,10 @@ PrefabInstance:
       propertyPath: gunShot
       value: 
       objectReference: {fileID: 8300000, guid: 1d749857180840b44b97c1a016c1d8f9, type: 3}
+    - target: {fileID: 7886227799095301010, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8489316261975293104, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: MaxDistance
       value: 14
@@ -23285,6 +23293,10 @@ PrefabInstance:
       propertyPath: shouldPatrol
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7886227799095301010, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
 --- !u!1001 &1648913843
@@ -23840,6 +23852,10 @@ PrefabInstance:
       propertyPath: patrolPoint.Array.data[3].z
       value: 10.86
       objectReference: {fileID: 0}
+    - target: {fileID: 7886227799095301010, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8489316261975293104, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
@@ -23993,6 +24009,10 @@ PrefabInstance:
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: patrolPoint.Array.data[4].z
       value: 17.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886227799095301010, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: sceneViewId
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6181354200709892686, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
@@ -29595,6 +29615,10 @@ PrefabInstance:
       propertyPath: activateKey
       value: 303
       objectReference: {fileID: 0}
+    - target: {fileID: 5898768988180477894, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 575963987387829717, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
@@ -30890,6 +30914,10 @@ PrefabInstance:
       propertyPath: player1Body
       value: 
       objectReference: {fileID: 227369772}
+    - target: {fileID: 878352266911530315, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6098370672710567468, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
       propertyPath: m_Name
       value: TopDownWalker_Fast
@@ -31090,6 +31118,10 @@ PrefabInstance:
     - target: {fileID: 6278214721141213319, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886227799095301010, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: sceneViewId
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6181354200709892686, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
@@ -31785,6 +31817,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7921854856473409305, guid: 2911d4b1121b85e4ba2c477325b3c05f, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8484234706053541420, guid: 2911d4b1121b85e4ba2c477325b3c05f, type: 3}
       propertyPath: m_RootOrder
       value: 19

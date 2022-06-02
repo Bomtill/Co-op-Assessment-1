@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon.Pun;
+using Photon.Realtime;
 
 namespace CMF
 {
@@ -20,6 +22,7 @@ namespace CMF
 		BoxCollider boxCollider;
 		SphereCollider sphereCollider;
 		CapsuleCollider capsuleCollider;
+        PhotonView view;
 
 		//Sensor variables;
 		[Header("Sensor Options :")]
@@ -101,6 +104,7 @@ namespace CMF
 			boxCollider = GetComponent<BoxCollider>();
 			sphereCollider = GetComponent<SphereCollider>();
 			capsuleCollider = GetComponent<CapsuleCollider>();
+            view = GetComponent<PhotonView>();
 
 			//Freeze rigidbody rotation and disable rigidbody gravity;
 			rig.freezeRotation = true;
@@ -311,7 +315,11 @@ namespace CMF
 		//Set mover velocity;
 		public void SetVelocity(Vector3 _velocity)
 		{
-			rig.velocity = _velocity + currentGroundAdjustmentVelocity;	
+            if (view.IsMine)
+            {
+                rig.velocity = _velocity + currentGroundAdjustmentVelocity;
+            }
+			
 		}	
 
 		//Returns 'true' if mover is touching ground and the angle between hte 'up' vector and ground normal is not too steep (e.g., angle < slope_limit);
