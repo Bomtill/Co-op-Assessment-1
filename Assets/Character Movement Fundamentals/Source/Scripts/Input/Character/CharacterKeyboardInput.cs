@@ -11,9 +11,10 @@ namespace CMF
 		public string verticalInputAxis = "Vertical";
 		public KeyCode activateKey = KeyCode.E;
 		public KeyCode powerKey = KeyCode.Q;
-
+		
 		//If this is enabled, Unity's internal input smoothing is bypassed;
 		public bool useRawInput = true;
+
 
         public override float GetHorizontalMovementInput()
 		{

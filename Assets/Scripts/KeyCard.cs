@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class KeyCard : MonoBehaviour, IInteractable
 {
@@ -15,6 +16,7 @@ public class KeyCard : MonoBehaviour, IInteractable
     {
         if (playerInRange)
         {
+            
             LevelManager.keyPickedUp = true;
         } return;
     }

@@ -8,8 +8,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] TMP_InputField hostGameInput;
     [SerializeField] TMP_InputField joinGameInput;
 
+    
     //RoomOptions roomOptions;
-    private int maxPalyers = 2;
+    private int maxPlayers = 2;
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(hostGameInput.text);
