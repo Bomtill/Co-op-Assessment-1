@@ -14,15 +14,20 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(hostGameInput.text);
+        Debug.Log("Created Room");
     }
 
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(joinGameInput.text);
+        Debug.Log("Joined room");
     }
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("WaitingRoom");
     }
-    
+    public void BackButton()
+    {
+        MySceneManager.MSMInstance.LoadNewScene(0);
+    }
 }

@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
     }
     public void OnlineButton()
     {
-        MySceneManager.MSMInstance.LoadNewScene(6);
+        MySceneManager.MSMInstance.LoadNewScene(1);
     }
     public void LevelSelect()
     {

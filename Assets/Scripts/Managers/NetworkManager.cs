@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+
+    PhotonView pv;
     [Header("global variables")]
     // scene manager
     // game paused
@@ -24,7 +27,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (PhotonNetwork.IsMasterClient)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -32,4 +38,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         
     }
+    public void ResetLevelData()
+    {
+        keyCardPickedUp = false;
+        p1Seen = false;
+        p1PowerActive = false;
+        p2PowerActive = false;
+        p2Seen = false;
+    }
 }
+
