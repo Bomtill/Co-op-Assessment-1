@@ -73,7 +73,10 @@ public class GameManager : MonoBehaviour
     }
     public void FadeEffect()
     {
-        fadeAnimator.SetTrigger("FadeOut");
+        if (fadeAnimator = null!)
+        {
+            fadeAnimator.SetTrigger("FadeOut");
+        }
     }
     private void OnEnable()
     {

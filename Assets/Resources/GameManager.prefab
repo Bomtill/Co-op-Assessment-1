@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1549398281205317811}
   - component: {fileID: 8662417876590299803}
   - component: {fileID: 1409305072656729406}
-  - component: {fileID: 8153637088085201473}
   m_Layer: 7
   m_Name: GameManager
   m_TagString: Untagged
@@ -130,20 +129,3 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
---- !u!114 &8153637088085201473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9146649440530251174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30d3b480acc6ba428c3a24691b9220a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCardPickedUp: 0
-  p1Seen: 0
-  p1PowerActive: 0
-  p2Seen: 0
-  p2PowerActive: 0

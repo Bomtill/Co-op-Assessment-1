@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace CMF
 {
@@ -15,6 +16,8 @@ namespace CMF
 		protected CharacterInput characterInput;
 		protected CeilingDetector ceilingDetector;
 		protected PlayerPowers playerPowers;
+
+		private PhotonView pv;
 
         //Jump key variables;
         bool jumpInputIsLocked = false;
@@ -84,6 +87,7 @@ namespace CMF
 			characterInput = GetComponent<CharacterInput>();
 			ceilingDetector = GetComponent<CeilingDetector>();
 			playerPowers = GetComponent<PlayerPowers>();
+			pv = GetComponent<PhotonView>();
 			lastMovementSpeed = movementSpeed;
 			if(characterInput == null)
 				Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
@@ -99,11 +103,14 @@ namespace CMF
 
         void FixedUpdate()
 		{
-			ControllerUpdate();
-			if (playerPowers.powerIsActve)
-			{
-				movementSpeed = 0f;
-			} else movementSpeed = lastMovementSpeed;
+            if (pv.IsMine)
+            {
+				ControllerUpdate();
+				if (playerPowers.powerIsActve)
+				{
+					movementSpeed = 0f;
+				} else movementSpeed = lastMovementSpeed;
+			}
 		}
 
 

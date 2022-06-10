@@ -24,12 +24,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public bool p2Seen = false;
     public bool p2PowerActive = false;
 
+    [SerializeField] Transform fastSpawnPoint;
+    [SerializeField] Transform slowSpawnPoint;
+
+    [SerializeField] GameObject fastPlayerPreFab;
+    [SerializeField] GameObject slowPlayerPreFab;
+
     // Start is called before the first frame update
     void Start()
     {
         if (PhotonNetwork.IsMasterClient)
         {
-
+            PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position,Quaternion.identity);
+        } else
+        {
+            PhotonNetwork.Instantiate(slowPlayerPreFab.name, slowSpawnPoint.transform.position, Quaternion.identity);
         }
     }
 

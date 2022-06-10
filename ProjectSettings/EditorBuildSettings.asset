@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: aeda59b80b2b30b4980fe04c30e186da
   - enabled: 1
-    path: Assets/Scenes/LobbyOnline.unity
+    path: Assets/Scenes/ConnectingRoom.unity
+    guid: c0cdcda654129db4aa70da73eb8b0bac
+  - enabled: 1
+    path: Assets/Scenes/Launcher.unity
     guid: 1e08b6c8f6d111540bba93f60d7e77bf
   - enabled: 1
     path: Assets/Scenes/Level_1.unity
@@ -21,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_2.unity
     guid: 42eaf184dd265914388b461b41c93b72
   - enabled: 1
-    path: Assets/Scenes/Launcher.unity
+    path: Assets/Scenes/OnlineLobby.unity
     guid: c631204917789234bb0819846da79366
   m_configObjects: {}

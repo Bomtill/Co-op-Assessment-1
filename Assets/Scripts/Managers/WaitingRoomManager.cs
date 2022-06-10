@@ -13,15 +13,25 @@ public class WaitingRoomManager : MonoBehaviourPunCallbacks
     public Toggle player2Ready;
     public GameObject startButton;
 
+    private LayerMask p1Interact;
+    private LayerMask p2Interact;
+
     bool p1Ready = false;
     bool p2Ready = false;
-
+    private void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        startButton.SetActive(false);
-        // roomname = name of room from launcher
+        //startButton.SetActive(false);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            //p1Interact = player1Ready.GetComponent<LayerMask>();
+            // set layermask to UI
+        }
 
     }
     /// <summary>
@@ -48,6 +58,6 @@ public class WaitingRoomManager : MonoBehaviourPunCallbacks
     }
     public void StartButton()
     {
-        PhotonNetwork.LoadLevel("Level 1");
+        PhotonNetwork.LoadLevel("Level_1");
     }
 }
