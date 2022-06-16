@@ -57,12 +57,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         pv = GetComponent<PhotonView>();
+        //PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position, Quaternion.identity);
+
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position,Quaternion.identity);
         } else
         {
-            PhotonNetwork.Instantiate(slowPlayerPreFab.name, slowSpawnPoint.transform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(fastPlayerPreFab.name, slowSpawnPoint.transform.position, Quaternion.identity);
         }
     }
 

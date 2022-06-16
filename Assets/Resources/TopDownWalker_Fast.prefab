@@ -492,7 +492,6 @@ GameObject:
   - component: {fileID: 897045971}
   - component: {fileID: 5417968332241275678}
   - component: {fileID: 878352266911530315}
-  - component: {fileID: 2609840298319979860}
   - component: {fileID: 4545158651602800356}
   m_Layer: 3
   m_Name: TopDownWalker_Fast
@@ -679,9 +678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 7052133531942370594}
   player1Body: {fileID: 140471073390059269}
-  player2: {fileID: 0}
-  player2Body: {fileID: 0}
-  otherPlayer: {fileID: 0}
   bodyDefault: {fileID: 2100000, guid: 364acff20bfc8c848b5b8c0325424646, type: 2}
   bodyTranspartent: {fileID: 2100000, guid: b4c53d1d6d12812499ff0ca32656fadf, type: 2}
   isPlayer1: 1
@@ -805,28 +801,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 2609840298319979860}
   - {fileID: 4545158651602800356}
   - {fileID: 3843776001531705822}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2609840298319979860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6098370672710567468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &4545158651602800356
 MonoBehaviour:
   m_ObjectHideFlags: 0

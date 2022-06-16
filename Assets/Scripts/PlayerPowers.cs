@@ -17,10 +17,10 @@ public class PlayerPowers : MonoBehaviour
     // will get rid of once there is only 1 mesh
     public SkinnedMeshRenderer player1;
     public SkinnedMeshRenderer player1Body;
-    public SkinnedMeshRenderer player2;
-    public SkinnedMeshRenderer player2Body;
+    //public SkinnedMeshRenderer player2;
+    //public SkinnedMeshRenderer player2Body;
 
-    public GameObject otherPlayer;
+    //public GameObject otherPlayer;
     public Material bodyDefault;
     public Material bodyTranspartent;
 
@@ -37,24 +37,26 @@ public class PlayerPowers : MonoBehaviour
 
     private void Start()
     {
+        /*
         if (isPlayer1)
         {
             otherPlayer = NetworkManager.NWInstance.SlowPlayerGetter;
         } else
         {
             otherPlayer = NetworkManager.NWInstance.FastPlayerGetter;
-        }
+        }*/
         powerBar = GetComponentInChildren<Slider>();
         currentPowerAmount = maxPowerAmount;
         powerBar.maxValue = maxPowerAmount;
         // stopTimeEffect.enabled = false;
-        player2 = otherPlayer.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-        player2Body = otherPlayer.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        //player2 = otherPlayer.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        //player2Body = otherPlayer.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     private void Update()
     {
         powerBar.value = currentPowerAmount;
+        /*
         if(player2 != null)
         {
             if (isPlayer1)
@@ -64,7 +66,7 @@ public class PlayerPowers : MonoBehaviour
             {
                 otherPlayer = NetworkManager.NWInstance.FastPlayerGetter;
             }
-        }
+        }*/
     }
     public void ActivatePower()
     {
@@ -73,14 +75,14 @@ public class PlayerPowers : MonoBehaviour
         
         if (invisibility)
         {
-            NetworkManager.NWInstance.p1PowerActive = true;
+            //NetworkManager.NWInstance.p1PowerActive = true;
             StartCoroutine(PowerCountDown(currentPowerAmount));
             gameObject.layer = LayerMask.NameToLayer("Default");
-            otherPlayer.layer = LayerMask.NameToLayer("Default");
+            //otherPlayer.layer = LayerMask.NameToLayer("Default");
             player1.material = bodyTranspartent;
             player1Body.material = bodyTranspartent;
-            player2.material = bodyTranspartent;
-            player2Body.material = bodyTranspartent;
+            //player2.material = bodyTranspartent;
+            //player2Body.material = bodyTranspartent;
             
         }
         if (stopTime)
@@ -88,7 +90,7 @@ public class PlayerPowers : MonoBehaviour
             //stopTimeEffect.enabled = true;
             NetworkManager.NWInstance.p2PowerActive = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
-            otherPlayer.layer = LayerMask.NameToLayer("Default");
+            //otherPlayer.layer = LayerMask.NameToLayer("Default");
             StartCoroutine(PowerCountDown(currentPowerAmount));
             PauseTimeEvent?.Invoke();
             // needs to be RPC event
@@ -99,24 +101,24 @@ public class PlayerPowers : MonoBehaviour
     {
         powerIsActve = false;
         
-        //StopCoroutine(PowerCountDown(currentPowerAmount));
+        StopCoroutine(PowerCountDown(currentPowerAmount));
         if (invisibility)
         {
-            NetworkManager.NWInstance.p1PowerActive = false;
+            //NetworkManager.NWInstance.p1PowerActive = false;
             gameObject.layer = LayerMask.NameToLayer("Players");
-            otherPlayer.layer = LayerMask.NameToLayer("Players");
+            //otherPlayer.layer = LayerMask.NameToLayer("Players");
             player1.material = bodyDefault;
             player1Body.material = bodyDefault;
-            player2.material = bodyDefault;
-            player2Body.material = bodyDefault;
+            //player2.material = bodyDefault;
+            //player2Body.material = bodyDefault;
             StartCoroutine(PowerRecharge(currentPowerAmount));
         }
         if (stopTime)
         {
             //stopTimeEffect.enabled = false;
-            NetworkManager.NWInstance.p2PowerActive = false;
+            //NetworkManager.NWInstance.p2PowerActive = false;
             gameObject.layer = LayerMask.NameToLayer("Players");
-            otherPlayer.layer = LayerMask.NameToLayer("Players");
+            //otherPlayer.layer = LayerMask.NameToLayer("Players");
             RestartTimeEvent?.Invoke();
 
             StartCoroutine(PowerRecharge(currentPowerAmount));
