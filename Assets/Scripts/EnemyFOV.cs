@@ -27,6 +27,7 @@ public class EnemyFOV : MonoBehaviour
 
     private IEnumerator FOVRoutine()
     {
+        // need to check if host
         WaitForSeconds wait = new WaitForSeconds(delay);
         while (true)
         {

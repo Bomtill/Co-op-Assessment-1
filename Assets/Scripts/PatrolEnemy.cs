@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
+using Photon.Realtime;
 
+[PunRPC]
 public class PatrolEnemy : MonoBehaviour
 {
     public static event Action GameOverEvent;
@@ -254,11 +257,13 @@ public class PatrolEnemy : MonoBehaviour
     }
     private void OnEnable()
     {
+        //PhotonNetwork.NetworkingClient.EventReceived += PauseTimeActive;
         PlayerPowers.PauseTimeEvent += PauseTimeActive;
         PlayerPowers.RestartTimeEvent += PauseTimeInactive;
     }
     private void OnDisable()
     {
+        PhotonNetwork.RemoveCallbackTarget(this);
         PlayerPowers.PauseTimeEvent -= PauseTimeActive;
         PlayerPowers.RestartTimeEvent -= PauseTimeInactive;
     }

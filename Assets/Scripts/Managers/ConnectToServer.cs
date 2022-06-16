@@ -18,5 +18,6 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         SceneManager.LoadScene("Launcher");
+        Debug.Log("Connected to PUN servers");
     }
 }

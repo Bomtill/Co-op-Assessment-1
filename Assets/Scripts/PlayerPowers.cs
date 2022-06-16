@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerPowers : MonoBehaviour
 {
@@ -28,28 +30,50 @@ public class PlayerPowers : MonoBehaviour
     public bool invisibility = false;
     public bool stopTime = false;
     //could have an enum for different powers? and changes which one is active through the inspector.
+
     
     public float maxPowerAmount = 5;
     public float currentPowerAmount;
 
     private void Start()
     {
+        if (isPlayer1)
+        {
+            otherPlayer = NetworkManager.NWInstance.SlowPlayerGetter;
+        } else
+        {
+            otherPlayer = NetworkManager.NWInstance.FastPlayerGetter;
+        }
         powerBar = GetComponentInChildren<Slider>();
         currentPowerAmount = maxPowerAmount;
         powerBar.maxValue = maxPowerAmount;
-       // stopTimeEffect.enabled = false;
+        // stopTimeEffect.enabled = false;
+        player2 = otherPlayer.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        player2Body = otherPlayer.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     private void Update()
     {
         powerBar.value = currentPowerAmount;
+        if(player2 != null)
+        {
+            if (isPlayer1)
+            {
+                otherPlayer = NetworkManager.NWInstance.SlowPlayerGetter;
+            } else
+            {
+                otherPlayer = NetworkManager.NWInstance.FastPlayerGetter;
+            }
+        }
     }
     public void ActivatePower()
     {
         Debug.Log("Activate power has been called");
         powerIsActve = true;
+        
         if (invisibility)
         {
+            NetworkManager.NWInstance.p1PowerActive = true;
             StartCoroutine(PowerCountDown(currentPowerAmount));
             gameObject.layer = LayerMask.NameToLayer("Default");
             otherPlayer.layer = LayerMask.NameToLayer("Default");
@@ -62,20 +86,23 @@ public class PlayerPowers : MonoBehaviour
         if (stopTime)
         {
             //stopTimeEffect.enabled = true;
+            NetworkManager.NWInstance.p2PowerActive = true;
             gameObject.layer = LayerMask.NameToLayer("Default");
             otherPlayer.layer = LayerMask.NameToLayer("Default");
             StartCoroutine(PowerCountDown(currentPowerAmount));
             PauseTimeEvent?.Invoke();
+            // needs to be RPC event
         }
     }
 
     public void DeactivatePower()
     {
         powerIsActve = false;
-
+        
         //StopCoroutine(PowerCountDown(currentPowerAmount));
         if (invisibility)
         {
+            NetworkManager.NWInstance.p1PowerActive = false;
             gameObject.layer = LayerMask.NameToLayer("Players");
             otherPlayer.layer = LayerMask.NameToLayer("Players");
             player1.material = bodyDefault;
@@ -87,9 +114,11 @@ public class PlayerPowers : MonoBehaviour
         if (stopTime)
         {
             //stopTimeEffect.enabled = false;
+            NetworkManager.NWInstance.p2PowerActive = false;
             gameObject.layer = LayerMask.NameToLayer("Players");
             otherPlayer.layer = LayerMask.NameToLayer("Players");
             RestartTimeEvent?.Invoke();
+
             StartCoroutine(PowerRecharge(currentPowerAmount));
         }
         // set everthing back to defaults.

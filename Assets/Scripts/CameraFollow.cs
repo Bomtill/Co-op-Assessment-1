@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        FindPlayers();
+        Invoke("FindPlayers",1.0f);
         //player1 = GameObject.Find("TopDownWalker_Fast");
         //player2 = GameObject.Find("TopDownWalker_Slow");
         // get players by their prefab name, also have check if Gameobject is =!null then recheck
@@ -32,13 +32,13 @@ public class CameraFollow : MonoBehaviour
 
         transform.position = Vector3.Lerp(player1.transform.position, player2.transform.position, 0.5f);
 
-        if (!player1) { FindPlayers(); }
-        if (!player2) { FindPlayers(); }
+        if (player1 != null) { FindPlayers(); }
+        if (player2 != null) { FindPlayers(); }
 
     }
     void FindPlayers()
     {
-        player1 = GameObject.Find("TopDownWalker_Fast");
-        player2 = GameObject.Find("TopDownWalker_Slow");
+        player1 = NetworkManager.NWInstance.FastPlayerGetter;
+        player2 = NetworkManager.NWInstance.SlowPlayerGetter;
     }
 }

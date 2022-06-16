@@ -23,15 +23,25 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(joinGameInput.text);
-        Debug.Log("Joined room");
+
     }
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("OnlineLobby");
+        Debug.Log("Joined room");
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. ");
+        
     }
     public void BackButton()
     {
         PhotonNetwork.Disconnect();
         MySceneManager.MSMInstance.LoadNewScene(0);
+    }
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
     }
 }
