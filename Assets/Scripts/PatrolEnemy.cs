@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using Photon.Pun;
 using Photon.Realtime;
 
-[PunRPC]
+
 public class PatrolEnemy : MonoBehaviour
 {
     public static event Action GameOverEvent;

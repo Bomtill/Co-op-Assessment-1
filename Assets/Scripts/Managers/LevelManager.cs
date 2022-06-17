@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject endLevelCube;
-    public GameObject keyCard;
+    //public GameObject keyCard;
     bool gamePaused = false;
     private float sceneTimer;
+    NetworkManager networkManager;
 
     
     public int scoreTimer;
@@ -18,8 +19,11 @@ public class LevelManager : MonoBehaviour
     public Canvas gameOverScreen;
     public Canvas menuScreen;
     public Canvas hintOverlay;
+
+    
     void Start()
     {
+        networkManager = GetComponent<NetworkManager>();
         ScoreManager.playerSeenCount = 0;
         Cursor.visible = false;
         gameOverScreen.enabled = false;
@@ -33,20 +37,20 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (keyPickedUp) keyCard.SetActive(false);
+        //if (keyPickedUp) keyCard.SetActive(false);
         sceneTimer = Time.timeSinceLevelLoad;
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (!gamePaused)
             {
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
                 Cursor.visible = true;
                 menuScreen.enabled = true;
                 gamePaused = true;
             } else
             {
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
                 Cursor.visible = false;
                 menuScreen.enabled = false;
                 gamePaused = false;
@@ -77,7 +81,12 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevelButton()
     {
-        MySceneManager.MSMInstance.ReloadCurrentScene();
+        networkManager.Restart();
+        gameOverScreen.enabled = false;
+        GameManager.GMInstance.FadeEffect();
+        Cursor.visible = false;
+
+        //MySceneManager.MSMInstance.ReloadCurrentScene();
     }
 
     public void ExitToMainButton()
@@ -117,15 +126,21 @@ public class LevelManager : MonoBehaviour
         scoreTimer++;
         yield return null;
     }
+    private void KeyCardPickedUp()
+    {
+        keyPickedUp = true;
+    }
     
     
     private void OnEnable()
     {
+        KeyCard.KeyCardPickedUp += KeyCardPickedUp;
         PatrolEnemy.GameOverEvent += GameOver;
         EndLevelTrigger.FinishedLevelEvent += LevelFinished;
     }
     private void OnDisable()
     {
+        KeyCard.KeyCardPickedUp -= KeyCardPickedUp;
         PatrolEnemy.GameOverEvent -= GameOver;
         EndLevelTrigger.FinishedLevelEvent -= LevelFinished;
     }

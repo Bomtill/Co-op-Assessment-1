@@ -1395,9 +1395,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: SetPlayer1Name
+      - m_Target: {fileID: 1770970028}
+        m_TargetAssemblyTypeName: Launcher, Assembly-CSharp
+        m_MethodName: ActivateHostButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1525,6 +1525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7a64352f4e7a94e8ae87e87fc73721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostButton: {fileID: 885383337}
+  joinButton: {fileID: 922018304453735643}
   hostGameInput: {fileID: 1698588147}
   joinGameInput: {fileID: 1806051753}
 --- !u!1 &1806051751
@@ -1628,9 +1630,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: SetPlayer2Name
+      - m_Target: {fileID: 1770970028}
+        m_TargetAssemblyTypeName: Launcher, Assembly-CSharp
+        m_MethodName: ActivateJoinButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -22,6 +22,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
     PhotonView pv;
+    LevelManager levelManager;
+    public GameObject winnerTitle;
+    public GameObject loserTitle;
+    public GameObject youDiedTitle;
+    public GameObject enemies;
+    
+
+    #region unused variables
     [Header("global variables")]
     // scene manager
     // game paused
@@ -41,38 +49,40 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private const byte P2SEENEVENT = 0;
     public bool p2PowerActive = false;
     private const byte STOPTIMEPOWEREVENT = 0;
-
-    [SerializeField] Transform fastSpawnPoint;
     [SerializeField] Transform slowSpawnPoint;
-
-    [SerializeField] GameObject fastPlayerPreFab;
     [SerializeField] GameObject slowPlayerPreFab;
-
     [HideInInspector]
     public GameObject SlowPlayerGetter { get { return slowPlayerPreFab; } }
+    #endregion
+
     [HideInInspector]
-    public GameObject FastPlayerGetter { get { return fastPlayerPreFab; } }
+    //public GameObject thisPlayerGetter { get { return thisPlayer; } }
+
+    [SerializeField] Transform fastSpawnPoint;
+    [SerializeField] GameObject fastPlayerPreFab;
+    public static GameObject thisPlayer;
+    GameObject otherPlayer;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        winnerTitle.SetActive(false);
+        loserTitle.SetActive(false);
+        youDiedTitle.SetActive(false);
+        levelManager = GetComponent<LevelManager>();
         pv = GetComponent<PhotonView>();
-        //PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position, Quaternion.identity);
-
+        
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position,Quaternion.identity);
+            thisPlayer = PhotonNetwork.Instantiate(fastPlayerPreFab.name, slowSpawnPoint.transform.position,Quaternion.identity);
         } else
         {
-            PhotonNetwork.Instantiate(fastPlayerPreFab.name, slowSpawnPoint.transform.position, Quaternion.identity);
+            thisPlayer = PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position, Quaternion.identity);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void ResetLevelData()
     {
         keyCardPickedUp = false;
@@ -80,6 +90,38 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         p1PowerActive = false;
         p2PowerActive = false;
         p2Seen = false;
+    }
+
+    public void PlayerKilled()
+    {
+        levelManager.GameOver();
+        youDiedTitle.SetActive(true);
+        // have the killed screen and then 'respawn'
+        // move player to respawn point.
+        
+        
+    }
+    [PunRPC]
+    public void PlayerFinished(int playerID) // have bool for winner
+    {
+        levelManager.GameOver();
+        enemies.SetActive(false);
+        if(playerID == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            winnerTitle.SetActive(true);
+            // this player is the winner
+        } else
+        {
+            loserTitle.SetActive(true);
+            // another player is the winner
+        }
+
+        // have the other players finish and this player win
+    }
+    public void Restart()
+    {
+        youDiedTitle.SetActive(false);
+        thisPlayer.transform.position = fastSpawnPoint.transform.position;
     }
 }
 

@@ -17,8 +17,6 @@ public class CameraFollow : MonoBehaviour
     {
         Invoke("FindPlayers",1.0f);
         player1 = GameObject.Find("TopDownWalker_Fast(Clone)");
-        //player2 = GameObject.Find("TopDownWalker_Slow");
-        // get players by their prefab name, also have check if Gameobject is =!null then recheck
     }
 
     // Update is called once per frame
@@ -39,7 +37,7 @@ public class CameraFollow : MonoBehaviour
     void FindPlayers()
     {
         player1 = GameObject.Find("TopDownWalker_Fast(Clone)");
-        //player1 = NetworkManager.NWInstance.FastPlayerGetter;
+        
 
     }
 }

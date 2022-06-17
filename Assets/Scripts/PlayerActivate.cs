@@ -35,6 +35,7 @@ namespace CMF
             bool newActivatePressed = IsActivateKeyPressed();
             if (newActivatePressed)
             {
+                Debug.Log("Interactkey pressed");
                 InteractEvent?.Invoke();
             }
         }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
+using System;
 
 public class KeyCard : MonoBehaviour, IInteractable
 {
+    public static event Action KeyCardPickedUp;
     bool playerInRange = false;
     public GameObject textPopUp;
 
@@ -16,8 +17,9 @@ public class KeyCard : MonoBehaviour, IInteractable
     {
         if (playerInRange)
         {
+            KeyCardPickedUp?.Invoke();
+            gameObject.SetActive(false);
             
-            LevelManager.keyPickedUp = true;
         } return;
     }
 

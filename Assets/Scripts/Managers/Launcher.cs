@@ -6,6 +6,9 @@ using Photon.Pun;
 using Photon.Realtime;
 public class Launcher : MonoBehaviourPunCallbacks
 {
+    public GameObject hostButton;
+    public GameObject joinButton;
+
     [SerializeField] TMP_InputField hostGameInput;
     [SerializeField] TMP_InputField joinGameInput;
 
@@ -13,6 +16,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     bool isConnecting;
     //RoomOptions roomOptions;
     private int maxPlayers = 2;
+
+    private void Start()
+    {
+        hostButton.SetActive(false);
+        joinButton.SetActive(false);
+    }
 
     public void CreateRoom()
     {
@@ -43,5 +52,13 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
+    }
+    public void ActivateHostButton()
+    {
+        hostButton.SetActive(true);
+    }
+    public void ActivateJoinButton()
+    {
+        joinButton.SetActive(true);
     }
 }
