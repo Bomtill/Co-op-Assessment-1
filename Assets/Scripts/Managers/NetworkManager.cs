@@ -55,7 +55,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject SlowPlayerGetter { get { return slowPlayerPreFab; } }
     #endregion
 
-    [HideInInspector]
+    
     //public GameObject thisPlayerGetter { get { return thisPlayer; } }
 
     [SerializeField] Transform fastSpawnPoint;

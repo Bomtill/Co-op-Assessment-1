@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        Invoke("FindPlayers",1.0f);
+        Invoke("FindPlayers",0.5f);
         player1 = GameObject.Find("TopDownWalker_Fast(Clone)");
     }
 

@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class EndLevelTrigger : MonoBehaviour
+public class EndLevelTrigger : MonoBehaviourPunCallbacks
 {
     public static event Action FinishedLevelEvent;
     PhotonView pv;
-    GameObject localPlayer;
+    GameObject localPlayerPrefab;
+    int localPlayerID;
+    
 
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        localPlayer = NetworkManager.thisPlayer;
+        Invoke("GetLocalPlayer", 0.6f);
     }
 
     int playersInZone = 0;
@@ -21,8 +23,13 @@ public class EndLevelTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            pv.RPC("PlayerFinished", RpcTarget.All, other.GetComponent<PhotonView>().OwnerActorNr);
+            pv.RPC("PlayerFinished", RpcTarget.All, localPlayerID);
             
         }
+    }
+    private void GetLocalPlayer()
+    {
+        localPlayerPrefab = GameObject.Find("TopDownWalker_Fast(Clone)");
+        localPlayerID = localPlayerPrefab.GetComponent<PhotonView>().ViewID;
     }
 }
