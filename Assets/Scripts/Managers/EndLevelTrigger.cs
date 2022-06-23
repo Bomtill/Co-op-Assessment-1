@@ -8,8 +8,8 @@ public class EndLevelTrigger : MonoBehaviourPunCallbacks
 {
     public static event Action FinishedLevelEvent;
     PhotonView pv;
-    GameObject localPlayerPrefab;
-    int localPlayerID;
+    [SerializeField] static GameObject localPlayerPrefab;
+    [SerializeField] int localPlayerID;
     
 
     private void Awake()
@@ -30,6 +30,8 @@ public class EndLevelTrigger : MonoBehaviourPunCallbacks
     private void GetLocalPlayer()
     {
         localPlayerPrefab = GameObject.Find("TopDownWalker_Fast(Clone)");
-        localPlayerID = localPlayerPrefab.GetComponent<PhotonView>().ViewID;
+        localPlayerID = localPlayerPrefab.GetComponent<PhotonView>().OwnerActorNr;
+        //PhotonNetwork.LocalPlayer.ActorNumber;
+        //localPlayerPrefab.GetComponent<PhotonView>().ViewID;
     }
 }

@@ -60,7 +60,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField] Transform fastSpawnPoint;
     [SerializeField] GameObject fastPlayerPreFab;
+    [SerializeField] GameObject endLevelCube;
+    [SerializeField] Transform endLevelTransform;
     public static GameObject thisPlayer;
+    [SerializeField] int thisPlayerID;
     GameObject otherPlayer;
 
 
@@ -74,6 +77,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         levelManager = GetComponent<LevelManager>();
         pv = GetComponent<PhotonView>();
         
+        PhotonNetwork.Instantiate(endLevelCube.name, endLevelTransform.transform.position, Quaternion.identity);
+        
         if (PhotonNetwork.IsMasterClient)
         {
             thisPlayer = PhotonNetwork.Instantiate(fastPlayerPreFab.name, slowSpawnPoint.transform.position,Quaternion.identity);
@@ -81,6 +86,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             thisPlayer = PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position, Quaternion.identity);
         }
+        thisPlayerID = thisPlayer.GetComponent<PhotonView>().OwnerActorNr;
     }
 
     public void ResetLevelData()
@@ -106,7 +112,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         levelManager.GameOver();
         enemies.SetActive(false);
-        if(playerID == PhotonNetwork.LocalPlayer.ActorNumber)
+        if(playerID == thisPlayerID) //PhotonNetwork.LocalPlayer.ActorNumber
         {
             winnerTitle.SetActive(true);
             // this player is the winner

@@ -22,22 +22,14 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        playersDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
-        Mathf.Clamp(playersDistance, 0, 1);
-        */
-        // move the camera up and down on the Y axis depending on d
-
-        transform.position = player1.transform.position;
-
+        
         if (player1 != null) { FindPlayers(); }
-       
 
+        if (player1) { transform.position = player1.transform.position; }
+        
     }
     void FindPlayers()
     {
         player1 = GameObject.Find("TopDownWalker_Fast(Clone)");
-        
-
     }
 }
