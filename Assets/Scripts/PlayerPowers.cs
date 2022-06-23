@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-using Photon.Realtime;
+
 
 public class PlayerPowers : MonoBehaviour
 {
     public static event Action PauseTimeEvent;
     public static event Action RestartTimeEvent;
 
+    PhotonView pv;
     //public Image stopTimeEffect;
     //public Image fillImage;
     private Slider powerBar;
@@ -37,14 +38,12 @@ public class PlayerPowers : MonoBehaviour
 
     private void Start()
     {
-        /*
-        if (isPlayer1)
+        pv = GetComponent<PhotonView>();
+        if (pv.IsMine)
         {
-            otherPlayer = NetworkManager.NWInstance.SlowPlayerGetter;
-        } else
-        {
-            otherPlayer = NetworkManager.NWInstance.FastPlayerGetter;
-        }*/
+            player1.material = bodyDefault;
+            player1Body.material = bodyDefault;
+        }
         powerBar = GetComponentInChildren<Slider>();
         currentPowerAmount = maxPowerAmount;
         powerBar.maxValue = maxPowerAmount;
@@ -56,35 +55,27 @@ public class PlayerPowers : MonoBehaviour
     private void Update()
     {
         powerBar.value = currentPowerAmount;
-        /*
-        if(player2 != null)
-        {
-            if (isPlayer1)
-            {
-                otherPlayer = NetworkManager.NWInstance.SlowPlayerGetter;
-            } else
-            {
-                otherPlayer = NetworkManager.NWInstance.FastPlayerGetter;
-            }
-        }*/
     }
     public void ActivatePower()
     {
         Debug.Log("Activate power has been called");
         powerIsActve = true;
-        
-        if (invisibility)
+        if (pv.IsMine)
         {
-            //NetworkManager.NWInstance.p1PowerActive = true;
-            StartCoroutine(PowerCountDown(currentPowerAmount));
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            //otherPlayer.layer = LayerMask.NameToLayer("Default");
-            player1.material = bodyTranspartent;
-            player1Body.material = bodyTranspartent;
-            //player2.material = bodyTranspartent;
-            //player2Body.material = bodyTranspartent;
-            
+            if (invisibility)
+            {
+                //NetworkManager.NWInstance.p1PowerActive = true;
+                StartCoroutine(PowerCountDown(currentPowerAmount));
+                gameObject.layer = LayerMask.NameToLayer("Default");
+                //otherPlayer.layer = LayerMask.NameToLayer("Default");
+                player1.material = bodyTranspartent;
+                player1Body.material = bodyTranspartent;
+                //player2.material = bodyTranspartent;
+                //player2Body.material = bodyTranspartent;
+
+            }
         }
+        
         if (stopTime)
         {
             //stopTimeEffect.enabled = true;
@@ -102,17 +93,21 @@ public class PlayerPowers : MonoBehaviour
         powerIsActve = false;
         
         StopCoroutine(PowerCountDown(currentPowerAmount));
-        if (invisibility)
+        if (pv.IsMine)
         {
-            //NetworkManager.NWInstance.p1PowerActive = false;
-            gameObject.layer = LayerMask.NameToLayer("Players");
-            //otherPlayer.layer = LayerMask.NameToLayer("Players");
-            player1.material = bodyDefault;
-            player1Body.material = bodyDefault;
-            //player2.material = bodyDefault;
-            //player2Body.material = bodyDefault;
-            StartCoroutine(PowerRecharge(currentPowerAmount));
+            if (invisibility)
+            {
+                //NetworkManager.NWInstance.p1PowerActive = false;
+                gameObject.layer = LayerMask.NameToLayer("Players");
+                //otherPlayer.layer = LayerMask.NameToLayer("Players");
+                player1.material = bodyDefault;
+                player1Body.material = bodyDefault;
+                //player2.material = bodyDefault;
+                //player2Body.material = bodyDefault;
+                StartCoroutine(PowerRecharge(currentPowerAmount));
+            }
         }
+        
         if (stopTime)
         {
             //stopTimeEffect.enabled = false;

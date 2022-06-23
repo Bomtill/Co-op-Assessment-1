@@ -108,7 +108,7 @@ namespace CMF
 				ControllerUpdate();
 				if (playerPowers.powerIsActve)
 				{
-					movementSpeed = 0f;
+					movementSpeed = 1f;
 				} else movementSpeed = lastMovementSpeed;
 			}
 		}

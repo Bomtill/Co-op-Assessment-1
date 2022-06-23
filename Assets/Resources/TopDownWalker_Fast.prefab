@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 6100444907968136956}
   - component: {fileID: 6142698123014302714}
   - component: {fileID: 6138515602093275988}
+  - component: {fileID: 5686649071774559631}
   m_Layer: 0
   m_Name: ModelRoot
   m_TagString: Untagged
@@ -441,6 +442,22 @@ MonoBehaviour:
   controller: {fileID: 6139070571881498056}
   turnSpeed: 500
   ignoreControllerMomentum: 0
+--- !u!114 &5686649071774559631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098063657152661308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &6098201657097543200
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,9 +508,9 @@ GameObject:
   - component: {fileID: 897045970}
   - component: {fileID: 897045971}
   - component: {fileID: 5417968332241275678}
-  - component: {fileID: 878352266911530315}
-  - component: {fileID: 4545158651602800356}
-  m_Layer: 3
+  - component: {fileID: 6286379813953548847}
+  - component: {fileID: 7085652727694109467}
+  m_Layer: 8
   m_Name: TopDownWalker_Fast
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -586,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5e44db14072ea4c964da3b192181c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.01
+  movementSpeed: 2.68
   airControlRate: 2
   jumpSpeed: 0
   jumpDuration: 0
@@ -626,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4650acabe1d6aa6429e42554f1f0feb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationMultiplyer: 0.41
+  animationMultiplyer: 0.36
   useStrafeAnimations: 0
   landVelocityThreshold: 5
 --- !u!114 &6138437367147996280
@@ -782,7 +799,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &878352266911530315
+--- !u!114 &6286379813953548847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -797,16 +814,17 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 4545158651602800356}
+  - {fileID: 7085652727694109467}
+  - {fileID: 5686649071774559631}
   - {fileID: 3843776001531705822}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4545158651602800356
+--- !u!114 &7085652727694109467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -819,7 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
+  m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
 --- !u!1 &6100048388918460226
@@ -865,7 +883,7 @@ Animator:
   m_GameObject: {fileID: 6100048388918460226}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
-  m_Controller: {fileID: 22100000, guid: 1ea92d06bb937a64b9be78d8bcb82b8b, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0b96ccda102a0f941baf079ef3854b86, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -976,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 3853268898807207900, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 364acff20bfc8c848b5b8c0325424646, type: 2}
+      objectReference: {fileID: 2100000, guid: b4c53d1d6d12812499ff0ca32656fadf, type: 2}
     - target: {fileID: 5866666021909216657, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -988,7 +1006,7 @@ PrefabInstance:
     - target: {fileID: 6148737315974723067, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 364acff20bfc8c848b5b8c0325424646, type: 2}
+      objectReference: {fileID: 2100000, guid: adbd7650bc1c75744b1124030ac261ba, type: 2}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b01ff478f4cc0940bb5767dd9746c7c, type: 3}

@@ -23,7 +23,7 @@ public class PatrolEnemy : MonoBehaviour
     [Tooltip("Tick if the character is a Scientist, instead of a Guard")]
     [SerializeField] bool isScientist;
 
-    [SerializeField] float moveSpeed, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
+    [SerializeField] float alertMoveSpeed, patrolSpeed, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
 
     enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND, DISTRACTED}
     [SerializeField] States currentState;
@@ -79,6 +79,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         isIdle = true;
         float timeDiff = patrolWaitTimeCounter;
+        
         patrolWaitTimeCounter -= Time.deltaTime;
         while (currentState == States.IDLE)
         {
@@ -97,8 +98,9 @@ public class PatrolEnemy : MonoBehaviour
     {
         isIdle = false;
         isPatrolling = true;
+        agent.speed = patrolSpeed;
         patrolWaitTimeCounter = 0;
-        //questionMark.SetActive(false);
+        questionMark.SetActive(false);
         agent.SetDestination(patrolPoint[currentPatrolPoint]);
         while (currentState == States.PATROL)
         {            
@@ -121,6 +123,7 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator SEARCH()
     {
         questionMark.SetActive(true);
+        agent.speed = alertMoveSpeed;
         //isSearching = true;
         // get random spot in area and SetDestination
         agent.SetDestination(lastKnowPosition);
@@ -129,6 +132,7 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator ATTACK()
     {
+        agent.speed = alertMoveSpeed;
         attackTimerRunning = false;
         while (currentState == States.ATTACK)
         {
@@ -145,6 +149,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         // anim.play caution or look animation
         //Debug.Log("huh, what are you doing!");
+        agent.speed = alertMoveSpeed;
         isIdle = false;
         isAlert = true;
         if (canSeePlayer)
@@ -228,6 +233,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         lastKnowPosition = player.position;
         ScoreManager.playerSeenCount++;
+        agent.speed = alertMoveSpeed;
         if (isAlert)
         {
             agent.isStopped = true;
@@ -263,7 +269,7 @@ public class PatrolEnemy : MonoBehaviour
     }
     private void OnDisable()
     {
-        PhotonNetwork.RemoveCallbackTarget(this);
+        //PhotonNetwork.RemoveCallbackTarget(this);
         PlayerPowers.PauseTimeEvent -= PauseTimeActive;
         PlayerPowers.RestartTimeEvent -= PauseTimeInactive;
     }

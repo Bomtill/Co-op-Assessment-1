@@ -32,7 +32,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(joinGameInput.text);
-
+        Debug.Log("Joining Room");
     }
     public override void OnJoinedRoom()
     {

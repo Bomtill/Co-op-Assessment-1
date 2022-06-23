@@ -67,7 +67,8 @@ MonoBehaviour:
   questionMark: {fileID: 6782858654317700183}
   exclamationPointRed: {fileID: 4427009095126067594}
   isScientist: 0
-  moveSpeed: 0
+  alertMoveSpeed: 3.5
+  patrolSpeed: 1.5
   alertTime: 0
   SearchTime: 0
   attackTime: 0
@@ -87,7 +88,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6a236bea599a749937f1f3f32b1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4.7
+  radius: 5.95
   angle: 81
   targetMask:
     serializedVersion: 2
@@ -5137,8 +5138,8 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9150943, g: 0, b: 0.038530227, a: 1}
   m_Intensity: 43.1
-  m_Range: 7.17
-  m_SpotAngle: 104
+  m_Range: 8.1
+  m_SpotAngle: 97
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:

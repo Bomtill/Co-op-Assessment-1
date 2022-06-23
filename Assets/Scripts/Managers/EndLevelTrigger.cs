@@ -8,6 +8,7 @@ public class EndLevelTrigger : MonoBehaviourPunCallbacks
 {
     public static event Action FinishedLevelEvent;
     PhotonView pv;
+    public NetworkManager networkManager;
     [SerializeField] static GameObject localPlayerPrefab;
     [SerializeField] int localPlayerID;
     
@@ -15,6 +16,7 @@ public class EndLevelTrigger : MonoBehaviourPunCallbacks
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        
         Invoke("GetLocalPlayer", 0.6f);
     }
 
@@ -23,7 +25,7 @@ public class EndLevelTrigger : MonoBehaviourPunCallbacks
     {
         if (other.CompareTag("Player"))
         {
-            pv.RPC("PlayerFinished", RpcTarget.All, localPlayerID);
+            networkManager.pv.RPC("PlayerFinished", RpcTarget.All, localPlayerID);
             
         }
     }

@@ -21,12 +21,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
     #endregion
-    PhotonView pv;
+    [HideInInspector]
+    public PhotonView pv;
     LevelManager levelManager;
     public GameObject winnerTitle;
     public GameObject loserTitle;
     public GameObject youDiedTitle;
     public GameObject enemies;
+    public GameObject restartButton;
+
+    
     
 
     #region unused variables
@@ -60,8 +64,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField] Transform fastSpawnPoint;
     [SerializeField] GameObject fastPlayerPreFab;
-    [SerializeField] GameObject endLevelCube;
-    [SerializeField] Transform endLevelTransform;
+    //[SerializeField] GameObject endLevelCube;
+    //[SerializeField] Transform endLevelTransform;
     public static GameObject thisPlayer;
     [SerializeField] int thisPlayerID;
     GameObject otherPlayer;
@@ -77,7 +81,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         levelManager = GetComponent<LevelManager>();
         pv = GetComponent<PhotonView>();
         
-        PhotonNetwork.Instantiate(endLevelCube.name, endLevelTransform.transform.position, Quaternion.identity);
+        //PhotonNetwork.Instantiate(endLevelCube.name, endLevelTransform.transform.position, Quaternion.identity);
         
         if (PhotonNetwork.IsMasterClient)
         {
@@ -87,6 +91,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             thisPlayer = PhotonNetwork.Instantiate(fastPlayerPreFab.name, fastSpawnPoint.transform.position, Quaternion.identity);
         }
         thisPlayerID = thisPlayer.GetComponent<PhotonView>().OwnerActorNr;
+        thisPlayer.layer = LayerMask.NameToLayer("Players");
     }
 
     public void ResetLevelData()
@@ -101,6 +106,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void PlayerKilled()
     {
         levelManager.GameOver();
+        Cursor.visible = true;
         youDiedTitle.SetActive(true);
         // have the killed screen and then 'respawn'
         // move player to respawn point.
@@ -108,10 +114,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         
     }
     [PunRPC]
-    public void PlayerFinished(int playerID) // have bool for winner
+    void PlayerFinished(int playerID) // have bool for winner
     {
+        Cursor.visible = true;
         levelManager.GameOver();
+        restartButton.SetActive(false);
         enemies.SetActive(false);
+        levelManager.Invoke("ExitToMainButton",5.0f);
         if(playerID == thisPlayerID) //PhotonNetwork.LocalPlayer.ActorNumber
         {
             winnerTitle.SetActive(true);
@@ -126,8 +135,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public void Restart()
     {
+        Cursor.visible = false;
         youDiedTitle.SetActive(false);
         thisPlayer.transform.position = fastSpawnPoint.transform.position;
     }
+
+    
 }
 

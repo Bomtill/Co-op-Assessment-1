@@ -7857,7 +7857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &614507609
 Transform:
   m_ObjectHideFlags: 0
@@ -20833,6 +20833,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyCharacter (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6181354200709892681, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
+      propertyPath: m_Speed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6181354200709892687, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
       propertyPath: alertTime
       value: 1
@@ -28563,10 +28567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30d3b480acc6ba428c3a24691b9220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 0}
   winnerTitle: {fileID: 5133953883587631771}
   loserTitle: {fileID: 5133953883587631770}
   youDiedTitle: {fileID: 5133953883587631772}
   enemies: {fileID: 614507608}
+  restartButton: {fileID: 5133953883587631774}
   keyCardPickedUp: 0
   p1Seen: 0
   p1PowerActive: 0
@@ -28576,8 +28582,6 @@ MonoBehaviour:
   slowPlayerPreFab: {fileID: 463839572253388673, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
   fastSpawnPoint: {fileID: 4202568953039211}
   fastPlayerPreFab: {fileID: 6098370672710567468, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
-  endLevelCube: {fileID: 6924825377333660276, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
-  endLevelTransform: {fileID: 6924825376476075513}
   thisPlayerID: 0
 --- !u!1 &5133953883587631770 stripped
 GameObject:
@@ -28616,6 +28620,11 @@ MonoBehaviour:
   sceneViewId: 5
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!1 &5133953883587631774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2972973301267298237, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
+  m_PrefabInstance: {fileID: 5133953883587631767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5838440210421003377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 346454555033880684, guid: 08921726b6b2c4d46849203c7dc3e035, type: 3}
@@ -28800,6 +28809,14 @@ PrefabInstance:
     - target: {fileID: 6100503405224071416, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286379813953548847, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816136029424621835, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
@@ -29033,8 +29050,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6924825377333660276, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8262055605514753810, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
+      propertyPath: networkManager
+      value: 
+      objectReference: {fileID: 5133953883587631769}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
 --- !u!1 &6924825376476075511 stripped
@@ -29064,11 +29085,6 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!4 &6924825376476075513 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6924825377333660272, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
-  m_PrefabInstance: {fileID: 6924825376476075510}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8248868777687004790
 PrefabInstance:
   m_ObjectHideFlags: 0

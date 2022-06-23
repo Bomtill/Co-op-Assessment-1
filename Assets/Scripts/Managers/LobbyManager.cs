@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 
 public class LobbyManager : MonoBehaviour
@@ -54,6 +55,7 @@ public class LobbyManager : MonoBehaviour
     }
     public void ExitToMainButton()  // back button
     {
+        PhotonNetwork.Disconnect();
         MySceneManager.MSMInstance.LoadNewScene(0);
     }
 }

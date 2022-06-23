@@ -26415,7 +26415,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1: {fileID: 4202569472106809}
-  player2: {fileID: 4202568953039211}
   topCameraPoint: {fileID: 0}
   bottomCameraPoint: {fileID: 0}
 --- !u!81 &1859985550
@@ -29526,11 +29525,6 @@ Light:
   m_CorrespondingSourceObject: {fileID: 8245594543729743178, guid: a1b935bc959dc9d42b46643e155bacdf, type: 3}
   m_PrefabInstance: {fileID: 548895586}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4202568953039211 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6100503405224071416, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
-  m_PrefabInstance: {fileID: 6100048388662106515}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4202569472106809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 461469379571054933, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
@@ -31133,6 +31127,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3218999956173130792, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6924825377333660272, guid: 7b44af60004f28747a948bb37618e0f8, type: 3}
       propertyPath: m_RootOrder
       value: 15

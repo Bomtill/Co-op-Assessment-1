@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class LevelManager : MonoBehaviour
     bool gamePaused = false;
     private float sceneTimer;
     NetworkManager networkManager;
+    PhotonView pv;
 
     
     public int scoreTimer;
@@ -23,6 +25,7 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
+        pv = GetComponent<PhotonView>();
         networkManager = GetComponent<NetworkManager>();
         ScoreManager.playerSeenCount = 0;
         Cursor.visible = false;
@@ -91,6 +94,7 @@ public class LevelManager : MonoBehaviour
 
     public void ExitToMainButton()
     {
+        PhotonNetwork.Disconnect();
         MySceneManager.MSMInstance.LoadNewScene(0);
     }
 
@@ -98,6 +102,7 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         GameManager.GMInstance.FadeEffect();
+        Cursor.visible = true;
         Invoke("EnableGameOverScreen", 1.5f);
         //Invoke("StopGameAfterGameOver", 2.5f);
     }
