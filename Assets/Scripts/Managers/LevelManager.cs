@@ -52,14 +52,14 @@ public class LevelManager : MonoBehaviour
                 gamePaused = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             
             //Debug.Log("Spacebar pressed");
             hintOverlay.enabled = true;
             exitArrow.enabled = true;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.H))
         {
             hintOverlay.enabled = false;
             exitArrow.enabled = false;

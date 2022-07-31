@@ -20,7 +20,7 @@ public class PatrolEnemy : MonoBehaviour
     [Tooltip("Tick if the character is a Scientist, instead of a Guard")]
     [SerializeField] bool isScientist;
 
-    [SerializeField] float moveSpeed, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
+    [SerializeField] float moveSpeed, alertSpeed, alertTime, SearchTime, attackTime, patrolWaitTime, returnToPatrolTime;
 
     enum States {IDLE, PATROL, SEARCH, ATTACK, ALARMED, RUNAWAY, PAUSED, REWIND, DISTRACTED}
     [SerializeField] States currentState;
@@ -74,6 +74,7 @@ public class PatrolEnemy : MonoBehaviour
      
     IEnumerator IDLE()
     {
+        agent.speed = moveSpeed;
         isIdle = true;
         float timeDiff = patrolWaitTimeCounter;
         patrolWaitTimeCounter -= Time.deltaTime;
@@ -144,6 +145,7 @@ public class PatrolEnemy : MonoBehaviour
         //Debug.Log("huh, what are you doing!");
         isIdle = false;
         isAlert = true;
+        agent.speed = alertSpeed;
         if (canSeePlayer)
         {
             while (currentState == States.ALARMED)
@@ -212,6 +214,7 @@ public class PatrolEnemy : MonoBehaviour
     }
     IEnumerator ReturnToPatrol()
     {
+        agent.speed = moveSpeed;
         questionMark.SetActive(false);
         anim.SetBool("IsAlert", false);
         yield return new WaitForSeconds(returnToPatrolTime);
@@ -274,7 +277,7 @@ public class PatrolEnemy : MonoBehaviour
     {
         isTimeStopped = false;
         anim.speed = 1;
-        agent.speed = 1.5f;
+        agent.speed = moveSpeed;
         if (canSeePlayer) 
         { 
             currentState = States.ATTACK; 

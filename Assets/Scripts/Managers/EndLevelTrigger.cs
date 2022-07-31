@@ -6,6 +6,7 @@ using UnityEngine;
 public class EndLevelTrigger : MonoBehaviour
 {
     public static event Action FinishedLevelEvent;
+    public string nextLevel;
 
     int playersInZone = 0;
     private void OnTriggerEnter(Collider other)
