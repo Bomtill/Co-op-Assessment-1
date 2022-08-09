@@ -94,6 +94,7 @@ public class PatrolEnemy : MonoBehaviour
     IEnumerator PATROL()
     {
         isIdle = false;
+        agent.speed = moveSpeed;
         isPatrolling = true;
         patrolWaitTimeCounter = 0;
         //questionMark.SetActive(false);

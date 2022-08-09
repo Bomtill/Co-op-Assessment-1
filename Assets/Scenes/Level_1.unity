@@ -22458,6 +22458,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 165625003370139107, guid: fe3088e2dc9ee594ca9d39eca1b839ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 165625004142220815, guid: fe3088e2dc9ee594ca9d39eca1b839ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe3088e2dc9ee594ca9d39eca1b839ac, type: 3}
 --- !u!1001 &1726352817
@@ -24031,7 +24039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1859985548
 Transform:
   m_ObjectHideFlags: 0
@@ -27578,6 +27586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopDownWalker_Slow
       objectReference: {fileID: 0}
+    - target: {fileID: 463839572253388673, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aed66e3e4dd9564abd0cb1a073f4322, type: 3}
 --- !u!1001 &2479420230569656863
@@ -27896,6 +27908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5133953883356518521, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8794608195736563757, guid: 1170f6616abe62440954b9858eb374b3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -28050,6 +28066,10 @@ PrefabInstance:
     - target: {fileID: 6098370672710567468, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
       propertyPath: m_Name
       value: TopDownWalker_Fast
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098370672710567468, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6100503405224071416, guid: f1df423403ed2d742b5a6d446af17720, type: 3}
       propertyPath: m_RootOrder
