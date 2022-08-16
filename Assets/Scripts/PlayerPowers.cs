@@ -51,8 +51,10 @@ public class PlayerPowers : MonoBehaviour
         if (invisibility)
         {
             StartCoroutine(PowerCountDown(currentPowerAmount));
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            otherPlayer.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Invisible");
+            otherPlayer.layer = LayerMask.NameToLayer("Invisible");
+            gameObject.tag = "Untagged";
+            otherPlayer.tag = "Untagged";
             player1.material = bodyTranspartent;
             player1Body.material = bodyTranspartent;
             player2.material = bodyTranspartent;
@@ -78,6 +80,8 @@ public class PlayerPowers : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("Players");
             otherPlayer.layer = LayerMask.NameToLayer("Players");
+            gameObject.tag = "Player";
+            otherPlayer.tag = "Player";
             player1.material = bodyDefault;
             player1Body.material = bodyDefault;
             player2.material = bodyDefault;

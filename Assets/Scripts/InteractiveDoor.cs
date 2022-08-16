@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InteractiveDoor : MonoBehaviour
 {
-
     public GameObject textPopUp;
     Animator anim;
     //public bool isDoorUnlocked = LevelManager.keyPickedUp;
@@ -49,5 +48,24 @@ public class InteractiveDoor : MonoBehaviour
             doorISOpen = false;
         }
         return;
+    }
+    private void PauseTimeActive()
+    {
+        anim.speed = 0f;
+    }
+    private void PauseTimeInactive()
+    {
+        anim.speed = 1f;
+    }
+
+    private void OnEnable()
+    {
+        PlayerPowers.PauseTimeEvent += PauseTimeActive;
+        PlayerPowers.RestartTimeEvent += PauseTimeInactive;
+    }
+    private void OnDisable()
+    {
+        PlayerPowers.PauseTimeEvent -= PauseTimeActive;
+        PlayerPowers.RestartTimeEvent -= PauseTimeInactive;
     }
 }
