@@ -8,31 +8,57 @@ public class InteractiveFan : MonoBehaviour
 
     BoxCollider fanCollider;
 
-    bool doorISOpen = false;
+    bool powerOff = false;
     public void Start()
     {
         anim = GetComponent<Animator>();
         fanCollider = GetComponent<BoxCollider>();
     }
 
-    public void FanStart()
+    private void FanStart()
     {
         anim.speed = 1f;
         fanCollider.enabled = true;
     }
 
-    public void FanStop()
+    private void FanStop()
     {
         anim.speed = 0f;
         fanCollider.enabled = false;
     }
-    private void PauseTimeActive()
+
+    public void SetPowerOff() 
     {
+        powerOff = true;
         FanStop();
     }
-    private void PauseTimeInactive()
-    {    
+
+    public void SetPowerOn() 
+    {
+        powerOff = false;
         FanStart();
+    }
+    private void PauseTimeActive()
+    {
+        if (powerOff)
+        {
+            return;
+        }
+        else
+        {
+            FanStop();
+        }
+    }
+    private void PauseTimeInactive()
+    {
+        if (powerOff)
+        {
+            return;
+        }
+        else
+        {
+            FanStart();
+        }
     }
 
     private void OnEnable()

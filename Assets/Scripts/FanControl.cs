@@ -48,12 +48,12 @@ public class FanControl : MonoBehaviour,IInteractable
         {
             if (fanIsWorking)
             {
-                objectRef.GetComponent<InteractiveFan>().FanStop();
+                objectRef.GetComponent<InteractiveFan>().SetPowerOff();
 
             }
             else if (!fanIsWorking)
             {
-                objectRef.GetComponent<InteractiveFan>().FanStart();
+                objectRef.GetComponent<InteractiveFan>().SetPowerOn();
             }
             fanIsWorking = !fanIsWorking;
         }
