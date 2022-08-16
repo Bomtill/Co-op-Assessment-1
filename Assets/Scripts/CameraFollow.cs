@@ -7,8 +7,6 @@ public class CameraFollow : MonoBehaviour
     public Transform player1;
     public Transform player2;
 
-    public Transform topCameraPoint;
-    public Transform bottomCameraPoint;
     //Vector3 cameraTransform;
     
     float playersDistance, cameraDistance;
