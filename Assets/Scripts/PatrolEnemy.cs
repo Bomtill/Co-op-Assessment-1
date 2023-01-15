@@ -286,7 +286,7 @@ public class PatrolEnemy : MonoBehaviour
         }
         if (isAlert) 
         { 
-            PlayerOutOfVeiw(); 
+            //PlayerOutOfVeiw(); 
             currentState = States.ALARMED; 
             return; 
         }
